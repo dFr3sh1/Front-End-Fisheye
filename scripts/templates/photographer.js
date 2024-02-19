@@ -15,3 +15,5 @@ function photographerTemplate(data) {
     }
     return { name, picture, getUserCardDOM }
 }
+
+//Factor function 
