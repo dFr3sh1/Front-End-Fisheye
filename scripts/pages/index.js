@@ -11,12 +11,15 @@
             console.error('Erreur lors du chargement des photographes :', error);
             return { photographers: [] }; // Retourne une liste vide en cas d'erreur
     }
+    
         }
+        console.log(getPhotographers)
+        
         // et bien retourner le tableau photographers seulement une fois récupéré
         // return ({
         //     photographers: [...photographers, ...photographers, ...photographers]})
 
-    console.log(getPhotographers)
+    
 
     async function displayData(photographers) {
         const photographersSection = document.querySelector(".photographer_section");
@@ -37,4 +40,5 @@
     console.log(init)
     
     init();
+    
     
