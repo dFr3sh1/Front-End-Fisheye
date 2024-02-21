@@ -1,6 +1,9 @@
 body {
   font-family: "DM Sans", sans-serif;
-  margin: 0; }
+  margin: auto;
+  max-width: 1440px;
+  overflow: hidden;
+  font-family: 'DM Sans'; }
 
 header {
   display: flex;
@@ -36,30 +39,39 @@ h1 {
 
 .photographer_section article img {
   height: 200px;
-  width: 200px; }
-
-.portrait-class {
-  -webkit-mask-image: radial-gradient(circle, black 70%, rgba(0, 0, 0, 0.05) 70%);
-  border-radius: 50%;
+  width: 200px;
+  clip-path: circle(50%);
+  -webkit-mask-image: radial-gradient(circle, black 65%, rgba(0, 0, 0, 0.05) 50%);
   background-position: center;
   background-size: 260px; }
 
-article:nth-child(0) {
-  background-position: center; }
+.photographer_section article:nth-child(1) img {
+  background-position: -46px -84px;
+  background-size: 300px; }
 
-article:nth-child(1) {
-  background-position: center; }
+.photographer_section article:nth-child(2) img {
+  background-position: -158px -37px;
+  background-size: 523px; }
 
-article:nth-child(2) {
-  background-position: center; }
+.photographer_section article:nth-child(3) img {
+  background-position: 10px -14px;
+  background-size: 230px; }
 
-article:nth-child(3) {
-  background-position: center; }
+.photographer_section article:nth-child(4) img {
+  background-position: -9px -38px;
+  background-size: 222px; }
 
-article:nth-child(4) {
-  background-position: center; }
+.photographer_section article:nth-child(5) img {
+  background-position: -144px -41px;
+  background-size: 503px; }
 
-article:nth-child(5) {
-  background-position: center; }
+.photographer_section article:nth-child(6) img {
+  background-position: -169px -37px;
+  background-size: 545px; }
+
+.ph-country-div {
+  display: flex;
+  gap: 5px;
+  color: #D3573C; }
 
 /*# sourceMappingURL=style.css.map */
