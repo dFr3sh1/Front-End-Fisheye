@@ -10,6 +10,8 @@ function photographerTemplate(data) {
     function getUserCardDOM() {
         const article = document.createElement('article');
         const img = document.createElement('img');
+        const imgShadow = document.createElement('div')
+        imgShadow.classList.add('imgShadow')
         //img.setAttribute("src", picture);
         img.classList.add('portrait-class')
         img.style.backgroundImage = `url(assets/photographers/photographersIDPhotos/${portrait})`;
@@ -29,8 +31,10 @@ function photographerTemplate(data) {
         taglineElement.textContent = tagline;
         const priceElement = document.createElement('p');
         priceElement.textContent = `${price} €/jour` ?? ('Le photographe négocie son prix selon travail');
+        priceElement.classList.add('priceText')
 
         article.appendChild(img);
+        article.appendChild(imgShadow)
         article.appendChild(h2);
         article.appendChild(locationDiv);
         locationDiv.appendChild(cityElement);

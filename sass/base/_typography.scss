@@ -1,0 +1,52 @@
+body {
+
+    font-family: 'DM sans';
+
+    h1, h2 {
+        font-weight: 400;
+        color: rgba(211, 87, 60, 1);       
+        
+    }
+
+    h1 {
+        font-size: 64px;
+        line-height: 83.33px;
+    }
+
+    h2 {
+        font-size: 36px;
+        line-height: 46.87px;
+    }
+
+    h3 {
+        font-size: 13px;
+        line-height: 16.93px;
+        color: rgba(144, 28, 28, 1);
+    }
+
+    p {
+        font-size: 13px;
+        line-height: 13.02px;
+    }
+
+    .priceText {
+        font-size: 9px;
+        line-height: 11.72px;
+        color: rgba(117, 117, 117, 1);
+        ;
+    }
+
+    .h1Homepage {
+        font-size: 36px;
+        line-height: 46.87px;
+        color: rgba(144, 28, 28, 1);
+    }
+
+    .contactTagline {
+        font-size: 18px;
+        line-height: 23.44px;
+        color: rgba(82, 82, 82, 1);
+        ;
+    }
+
+}

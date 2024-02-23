@@ -1,12 +1,5 @@
-body {
-    font-family: "DM Sans", sans-serif;
-    margin: auto;
-    max-width: 1440px;
-    overflow: hidden;
-    font-family: 'DM Sans';
-
-}
-
+@import './base/base';
+@import './base/typography';
 
 header {
     display: flex;
@@ -52,8 +45,6 @@ h1 {
     clip-path:circle(50%);
     -webkit-mask-image: radial-gradient(circle, black 65%,
     rgba(0, 0, 0, 0.05) 50%);
-    background-position: center;
-    background-size: 260px;
 }
 
 .photographer_section article:nth-child(1) img{
@@ -87,5 +78,14 @@ h1 {
     color: #D3573C;
 }
 
+.imgShadow {
+    width: 188px;
+    height: 201px;
+    border: 8px solid rgba(255,255,255, 0.9);
+    border-radius: 50%;
+    position: absolute;
+    top: 190px;
+    z-index: 1;
+}
 
 

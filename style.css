@@ -5,6 +5,37 @@ body {
   overflow: hidden;
   font-family: 'DM Sans'; }
 
+body {
+  font-family: 'DM sans'; }
+  body h1, body h2 {
+    font-weight: 400;
+    color: #d3573c; }
+  body h1 {
+    font-size: 64px;
+    line-height: 83.33px; }
+  body h2 {
+    font-size: 36px;
+    line-height: 46.87px; }
+  body h3 {
+    font-size: 13px;
+    line-height: 16.93px;
+    color: #901c1c; }
+  body p {
+    font-size: 13px;
+    line-height: 13.02px; }
+  body .priceText {
+    font-size: 9px;
+    line-height: 11.72px;
+    color: #757575; }
+  body .h1Homepage {
+    font-size: 36px;
+    line-height: 46.87px;
+    color: #901c1c; }
+  body .contactTagline {
+    font-size: 18px;
+    line-height: 23.44px;
+    color: #525252; }
+
 header {
   display: flex;
   flex-direction: row;
@@ -41,9 +72,7 @@ h1 {
   height: 200px;
   width: 200px;
   clip-path: circle(50%);
-  -webkit-mask-image: radial-gradient(circle, black 65%, rgba(0, 0, 0, 0.05) 50%);
-  background-position: center;
-  background-size: 260px; }
+  -webkit-mask-image: radial-gradient(circle, black 65%, rgba(0, 0, 0, 0.05) 50%); }
 
 .photographer_section article:nth-child(1) img {
   background-position: -46px -84px;
@@ -73,5 +102,14 @@ h1 {
   display: flex;
   gap: 5px;
   color: #D3573C; }
+
+.imgShadow {
+  width: 188px;
+  height: 201px;
+  border: 8px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  position: absolute;
+  top: 190px;
+  z-index: 1; }
 
 /*# sourceMappingURL=style.css.map */
