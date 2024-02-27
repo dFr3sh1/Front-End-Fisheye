@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./style.css" />
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <script src="./data/photographers.json" defer></script>
-    <script type="module" src="scripts/templates/photographer.js" defer></script>
-    <script type="module" src="scripts/pages/index.js" defer></script>
+    <script type="module" src="./scripts/pages/photographer.js" defer></script>
+    <script type="module" src="./scripts/pages/index.js" defer></script>
     <title>Fisheye</title>
   </head>
   <body>
-    <header>
+    <header class="container">
         <img src="assets/images/logo.png" class="logo" alt="fisheye logo"/>
         <h1 class="h1Homepage">Nos photographes</h1>
     </header>
-    <main id="main">
+    <main class="container" id="main">
         <div class="photographer_section"></div>
         
     </main>
-    <footer>
-      <p>&copy; 2024 Photographers Directory</p>
+    <footer class="container">
+      <p class="p-footer">&copy; 2024 Photographers Directory</p>
   </footer>
   </body>
 </html>
