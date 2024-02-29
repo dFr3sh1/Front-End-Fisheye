@@ -121,6 +121,22 @@ main {
   gap: 70px;
   margin-top: 100px; }
 
+button {
+  width: 170px;
+  padding: 23px;
+  font-size: 18px;
+  line-height: 23.44px;
+  text-align: center;
+  border-radius: 2%; }
+
+.mainBtn {
+  background-color: #901c1c;
+  color: white; }
+
+.secondBtn {
+  background-color: #d3573c;
+  color: black; }
+
 .logo {
   height: 50px;
   margin-left: 82px; }

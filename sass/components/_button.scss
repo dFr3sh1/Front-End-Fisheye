@@ -1,0 +1,19 @@
+button {
+    width: 170px;
+    padding: 23px;
+
+    font-size: 18px;
+    line-height: 23.44px;
+    text-align: center;
+    border-radius: 2%;
+}
+
+.mainBtn {
+    background-color: $main-color;
+    color:rgba(255, 255, 255, 1);
+}
+.secondBtn {
+    background-color: $second-main-color;
+    color: rgba(0, 0, 0, 1);
+    ;
+}
