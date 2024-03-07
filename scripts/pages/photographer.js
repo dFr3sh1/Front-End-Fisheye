@@ -54,5 +54,3 @@ console.log(photographerTemplate)
 
 export default photographerTemplate
 
-
-// //Class constructor@

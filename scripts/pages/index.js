@@ -21,15 +21,22 @@
 
     
 
-    async function displayData(photographers) {
+    export async function displayData(photographers) {
         const photographersSection = document.querySelector(".photographer_section");
         
         photographers.forEach((photographer) => {
             const photographerModel = photographerTemplate(photographer);
             const userCardDOM = photographerModel.getUserCardDOM();
+
+        //Add un event listener to each photographer section
+            userCardDOM.addEventListener('click', () => {
+                navigateToPhotographerPage(photographer);
+            });
+
             photographersSection.appendChild(userCardDOM);
         });
     }
+
     console.log(displayData)
 
     async function init() {
@@ -37,8 +44,17 @@
         const { photographers } = await getPhotographers();
         displayData(photographers);
     }
-    console.log(init)
-    
+
+    console.log(init);
+
+    //Function to navigate to photographer page
+
+    function navigateToPhotographerPage(photographer) {
+        //Navigate to photographer.html with the phographer's ID
+        window.location.href = `photographer.html?id=${photographer.id}`
+    };
+
     init();
+    
     
     

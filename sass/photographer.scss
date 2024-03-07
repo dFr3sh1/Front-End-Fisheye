@@ -1,0 +1,10 @@
+@import './layouts/l-header';
+
+.photograph-header {
+    display: flex;
+    flex-direction: row;
+    margin-top: 40px;
+    max-width: 1240px;
+    height: 313px;
+    background-color:rgba(250, 250, 250, 1);   
+}
