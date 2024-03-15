@@ -43,9 +43,10 @@ function photographerTemplate(data) {
 
 
         return article;
+
     }
 
-    return { name, picture, getUserCardDOM }
+    return { name, picture, getUserCardDOM}
     
     }
     
@@ -53,4 +54,7 @@ function photographerTemplate(data) {
 console.log(photographerTemplate)
 
 export default photographerTemplate
+
+
+
 

@@ -1,39 +1,30 @@
+<!-- photographer.html -->
 <!DOCTYPE html>
-<html>
-  <head>
-    <link href="./style.css" rel="stylesheet" />
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="./style.css" />
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
-  </head>
-  <body>
-    <header>
-      <img src="assets/images/logo.png" class="logo" alt="Fisheye logo"/>
-    </header>
-    <main id="main">
-      <div class="photograph-header photographer_section container">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      </div>
-    </main>
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
-        </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button" >Envoyer</button>
-				</form>
-			</div>
-		</div>
-    <script src="./scripts/pages/photographer.js" type="module"></script>
-    <script src="./scripts/pages/selectedPhotographer.js" type="module"></script>
-    <script src="./scripts/pages/newPhotographer.js" type="module"></script>
-    <script src="./scripts/utils/contactForm.js" type="module"></script>
-  </body>
+    <title>Fisheye</title>
+</head>
+<body>
+<header class="container">
+    <img src="assets/images/logo.png" class="logo" alt="fisheye logo"/>
+    <nav class="nav">
+        <ul class="ul-nav">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+<main class="photographer_section container">
+    <div id="photographer"></div>
+</main>
+<footer class="container">
+    <p class="p-footer">&copy; 2024 Photographers Directory</p>
+</footer>
+<script src="./scripts/pages/photographer.js" type="module"></script>
+<script src="./scripts/pages/selectedPhotographer.js" type="module"></script>
+</body>
 </html>
