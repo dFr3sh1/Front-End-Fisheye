@@ -1,6 +1,6 @@
 // selectedPhotographer.js
 import photographerTemplate from "./photographer.js";
-import { getPhotographers}  from "./index.js";
+import { getPhotographers }  from "./index.js";
 
 async function main() {
     try {
