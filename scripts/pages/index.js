@@ -1,25 +1,38 @@
 // index.js
+import PhotographerTemplate from '../templates/photographer.js';
+import {getPhotographers, getMedias} from '../utils/getter.js'
 
-import photographerTemplate from './photographer.js';
-
-
-export async function getPhotographers() {
+export async function init() {
     try {
-        const response = await fetch('data/photographers.json');
-        const data = await response.json();
-        return data.photographers; // Return only the photographers array
-    } catch(error) {
-        console.error('Error loading photographers:', error);
-        return []; // Return an empty array in case of error
+        const photographers = await getPhotographers();
+        const photographersSection = document.querySelector(".photographer_section");
+        // displayData(photographers);
+    
+        photographers.forEach((photographer) => {
+            const photographerModel = new PhotographerTemplate(photographer);
+            const userCardDOM = photographerModel.getUserCardDOM();
+    
+            photographersSection.appendChild(userCardDOM);
+        });
+    
+    } catch (error) {
+        console.error('Error initializing:', error);
     }
+
 }
+// Call init() when the DOM content is loaded
+document.addEventListener("DOMContentLoaded", async () => {
+    await init();
+});
+
+//document.addEventListener("DOMContentLoaded", init);
 
 export async function displayData(photographers) {
     const photographersSection = document.querySelector(".photographer_section");
 
     
     photographers.forEach((photographer) => {
-        const photographerModel = photographerTemplate(photographer);
+        const photographerModel = new PhotographerTemplate(photographer);
         const userCardDOM = photographerModel.getUserCardDOM();
 
         userCardDOM.addEventListener('click', () => {
@@ -32,8 +45,8 @@ export async function displayData(photographers) {
 
 
 
-function navigateToPhotographerPage(photographer) {
-    window.location.href = `photographer.html?id=${photographer.id}`;
-}
+// function navigateToPhotographerPage(photographer) {
+//     window.location.href = `photographer.html?id=${photographer.id}`;
+// }
 
 

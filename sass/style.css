@@ -200,4 +200,12 @@ header {
 .p-footer {
   padding-left: 75px; }
 
+#divLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.a-link {
+  text-decoration: none; }
+
 /*# sourceMappingURL=style.css.map */
