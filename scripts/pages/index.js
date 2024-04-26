@@ -14,6 +14,7 @@ export async function init() {
     
             photographersSection.appendChild(userCardDOM);
         });
+
     
     } catch (error) {
         console.error('Error initializing:', error);
@@ -25,7 +26,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await init();
 });
 
-//document.addEventListener("DOMContentLoaded", init);
+
 
 export async function displayData(photographers) {
     const photographersSection = document.querySelector(".photographer_section");
@@ -34,6 +35,12 @@ export async function displayData(photographers) {
     photographers.forEach((photographer) => {
         const photographerModel = new PhotographerTemplate(photographer);
         const userCardDOM = photographerModel.getUserCardDOM();
+        const portraitElements = document.querySelectorAll('.portrait-class');
+    
+    portraitElements.forEach((element, id) => {
+        element.classList.add(`portrait-${index}`);
+    });
+
 
         userCardDOM.addEventListener('click', () => {
             navigateToPhotographerPage(photographer);

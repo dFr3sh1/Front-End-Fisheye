@@ -12,9 +12,11 @@ class PhotographerTemplate {
         this.tagline = data.tagline;
         this.price = data.price;
     }
+
    // const { name, portrait, city, country, tagline, price} = data;
 
     //const picture = `assets/photographers/photographersIDPhotos/${this.portrait}`;
+
 
     getUserCardDOM() {
         const article = document.createElement('article');

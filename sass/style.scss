@@ -8,51 +8,23 @@
 @import './components/button';
 @import './photographer.scss';
 
-
-
 .logo {
     height: 50px;
     margin-left: 82px;
 }
 
-.photographer_section article img {
+img.portrait-class  {
     height: 200px;
     width: 200px;
     margin-bottom: 20px;
-    clip-path:circle(50%);
-    -webkit-mask-image: radial-gradient(circle, black 65%,
-    rgba(0, 0, 0, 0.05) 50%);
+    clip-path:circle(49%);
+    background-size: cover;
 }
 
 .ph-div-info {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.photographer_section article:nth-child(1) img{
-    background-position: -48px -64px;
-    background-size: 279px;
-}
-.photographer_section article:nth-child(2) img{
-    background-position: -158px -37px;
-    background-size: 523px;
-}
-.photographer_section article:nth-child(3) img{
-    background-position: 10px -14px;
-    background-size: 230px;
-}
-.photographer_section article:nth-child(4) img{
-    background-position: -9px -38px;
-    background-size: 222px;
-}
-.photographer_section article:nth-child(5) img{
-    background-position: -144px -41px;
-    background-size: 503px;
-}
-.photographer_section article:nth-child(6) img{
-    background-position: -169px -37px;
-    background-size: 545px;
 }
 
 .ph-country-div {
