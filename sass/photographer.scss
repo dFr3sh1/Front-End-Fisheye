@@ -9,8 +9,28 @@
     background-color:rgba(250, 250, 250, 1);   
 }
 
+img.logo-photographe  {
+    margin-left: 0;
+}
+
 .container {
     padding-left: 0;
     padding-right: 0;
 }
 
+#photographer {
+    margin-top: 33px;
+    margin-left: auto;
+    max-width: 100%;
+    height: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    background-color: rgba(250, 250, 250, 1);
+}
+
+img.headerPortrait {
+    margin-bottom: -20px;
+}
