@@ -6,14 +6,16 @@
 @import './layouts/l-main';
 @import './layouts/l-photographerSection';
 @import './components/button';
-@import './photographer.scss';
+@import './libs/photographer.scss';
+@import './libs/media.scss';
 
 .logo {
+    width: 200px;
     height: 50px;
     margin-left: 82px;
 }
 
-img.portrait-class  {
+.portrait-class  {
     height: 200px;
     width: 200px;
     margin-bottom: 20px;
@@ -30,7 +32,7 @@ img.portrait-class  {
 .ph-country-div {
     display: flex;
     gap: 5px;
-    color: #D3573C;
+    color: $second-main-color;
 }
 
 .p-footer{

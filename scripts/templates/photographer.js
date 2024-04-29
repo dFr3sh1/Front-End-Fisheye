@@ -63,31 +63,6 @@ class PhotographerTemplate {
     }
 }
 
-class SelectedPhotographe extends PhotographerTemplate {
-
-    constructor(data) {
-        super(data)
-    }
-
-    personalPagePhotographe() {
-        const filterContainer = document.createElement('div');
-        filterContainer.id = 'filterContainer';
-        const label = document.createElement('label');
-        label.textContent = 'Trier par';
-        label.setAttribute('for', 'filterSelect');
-        const select = document.createElement('select');
-        select.id = 'filterSelect';
-        const options = [
-            {value: 'popularity', text: 'Popularité'},
-            {value: 'date', text: 'Date'},
-            {value: 'title', text: 'Titre'}
-        ]
-
-
-    }
-}
-
-
 console.log(PhotographerTemplate)
 
 export default PhotographerTemplate
