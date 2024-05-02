@@ -39,6 +39,7 @@ function displayMedias(medias) {
         const mediaModel = new MediaTemplate(media);     
         
         const mediaItem = mediaModel.getMediasGallery();
+        
 
         mediaContainer.appendChild(mediaItem)
     });
