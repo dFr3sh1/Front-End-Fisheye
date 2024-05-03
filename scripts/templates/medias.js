@@ -43,11 +43,10 @@ class MediaTemplate {
 
         }
 
-
-
         const title = document.createElement('h2')
         title.classList.add('title');
         title.textContent = this.title;
+        title.id = "filter-title";
         
         const likes = document.createElement('div');
         likes.classList.add('likes');
@@ -55,10 +54,16 @@ class MediaTemplate {
         counter.textContent = this.likes
         const like = document.createElement('img');
         like.src = `/assets/images/redHeartFilled.png`;
-        like.addEventListener('click', () = > {
-            this.likes ++ ;
+        like.addEventListener('click', () => {
+            if (like.classList.contains('liked')) {
+                this.likes--;
+                like.classList.remove('liked');
+            } else {
+                this.likes ++ ;
+                like.classList.add('liked')
+            }
             //To update the counter
-            counter.textContent = this.likes
+            counter.textContent = this.likes  
         });
 
         likes.appendChild(counter)

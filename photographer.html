@@ -16,6 +16,20 @@
 </header>
 <main class="container">
     <div id="photographer"></div>
+    <div class="container">
+        <label for="filter">Filtrer par :</label>
+            <select class="filter-option" name="filter" id="filter">
+                <option class="filter-option" value="popularity">Popularité</option>
+                <option class="filter-option" value="date">Date</option>
+                <option class="filter-option" value="title">Titre</option>
+            </select>
+    </div>
+    <!--button id="filterBtn" aria-haspopup="listbox" aria-expanded="false">Filtrer par</button>
+    <div id="filterOptions" role="listbox" aria-labelledby="filterBtn" aria-activedescendant="selectedOption">
+        <button id="popularityOption" role="option" aria-selected="false">Popularité</button>
+        <button id="dateOption" role="option" aria-selected="false">Date</button>
+        <button id="titleOption" role="option" aria-selected="false">Titre</button>
+    </div-->
     <div class="media-gallery" id="medias-gallery">
         <!--i class="fa-solid fa-heart" style="color: #901c1c;"></i-->
     </div>

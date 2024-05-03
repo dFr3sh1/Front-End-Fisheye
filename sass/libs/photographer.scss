@@ -36,3 +36,30 @@ img.logo-photographe  {
 .headerPortrait {
     margin-bottom: -20px;
 }
+
+.filter-option {
+    margin-top: 20px;
+    margin-bottom: 60px;
+
+    padding: 20px;
+
+    font-size: 18px;
+    line-height: 23.44px;
+    text-align: center;
+    border: none;
+    border-radius: 2%;
+
+    background-color: $main-color;
+    color:rgba(255, 255, 255, 1);
+}
+
+.media-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.media-info p {
+    font-size: 24px;
+}
