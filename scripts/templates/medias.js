@@ -9,7 +9,7 @@ class MediaTemplate {
         this.image = data.image;
         this.video = data.video;
         this.likes = data.likes;
-        this.date =  data.likes;
+        this.date =  data.date;
         this.price = data.price;
     }    
 
@@ -20,6 +20,7 @@ class MediaTemplate {
         mediaItem.classList.add('media-item');
         const thumbnail = document.createElement('div');
         thumbnail.classList.add('thumbnail');
+        const date = this.date
             
         //Conditional to check if it is video or image
 
@@ -50,8 +51,17 @@ class MediaTemplate {
         
         const likes = document.createElement('div');
         likes.classList.add('likes');
+        let counter = document.createElement('p')
+        counter.textContent = this.likes
         const like = document.createElement('img');
         like.src = `/assets/images/redHeartFilled.png`;
+        like.addEventListener('click', () = > {
+            this.likes ++ ;
+            //To update the counter
+            counter.textContent = this.likes
+        });
+
+        likes.appendChild(counter)
         likes.appendChild(like);
 
         const mediaInfo = document.createElement('div');
