@@ -1,5 +1,6 @@
 //Mettre le code Javascript lié à la page photographer.html
 //Récupéerer data from json file
+import {getPhotographers, getMedias} from '../utils/getter.js'
 
 class MediaTemplate {
     constructor(data){

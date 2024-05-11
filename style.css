@@ -193,6 +193,9 @@ img.logo-photographe {
   background-color: #901c1c;
   color: white; }
 
+.divHeader {
+  margin-left: 50px; }
+
 .media-info {
   display: flex;
   flex-direction: row;
@@ -200,6 +203,22 @@ img.logo-photographe {
   align-items: center; }
 
 .media-info p {
+  font-size: 24px; }
+
+.like-price {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 20px;
+  left: 80%;
+  display: flex;
+  width: 300px;
+  height: 69px;
+  border-radius: 5px;
+  background: #db8876;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
   font-size: 24px; }
 
 .media-gallery {

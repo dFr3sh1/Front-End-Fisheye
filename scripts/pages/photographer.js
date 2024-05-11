@@ -2,30 +2,23 @@
 import PhotographerTemplate from "../templates/photographer.js";
 import MediaTemplate from "../templates/medias.js";
 import displayHeaderPh from "../templates/banner.js";
-import { getPhotographers, getMedias }  from "../utils/getter.js";
+import { getPhotographerById, getMediasByPhotographerId }  from "../utils/getter.js";
 import { filterByPopularity, filterByDate, filterByTitle } from "../utils/mediaFilter.js";
 
 async function main() {
     try {
-        const photographers = await getPhotographers();
-        const searchPhotographe = window.location.search
+        
+        const searchPhotographe = window.location.search;
         const id = Number(searchPhotographe.split("=")[1]);
+        const photographer = await getPhotographerById(id);
 
-
-        const selectedPhotographer = photographers.find((photographer) => photographer.id === id);
-        if (!selectedPhotographer) {
-            console.error('Photographer not found');
-            return;
-        }
-        displayHeaderPh(selectedPhotographer);
+        displayHeaderPh(photographer);
         //To fetch the media for the selectedPhotographer
-        const medias = await getMedias();
-
-        //To filter medias belonging to the selectedPhotographer
-        const selectedPhotographerMedias = medias.filter((media) => media.photographerId === id);
+        const medias = await getMediasByPhotographerId(id);
+        console.log(medias)
 
         //To display medias
-        displayMedias(selectedPhotographerMedias);
+        displayMedias(medias);
 
 
         // Filter media based on the selected option in the dropdown
@@ -34,15 +27,15 @@ async function main() {
             const selectedOption = this.value;
             let filteredMedias;
             if (selectedOption === 'popularity') {
-                filteredMedias = filterByPopularity(selectedPhotographerMedias);
+                filteredMedias = filterByPopularity(medias);
             } else if (selectedOption === 'date') {
-                filteredMedias = filterByDate(selectedPhotographerMedias, 'recent');
+                filteredMedias = filterByDate(medias, 'recent');
             } else if (selectedOption === 'title') {
                  // For title filter, retrieve the keyword from the input field
                 const keyword = document.getElementById('filter-title').value;
                 // Determine sorting order (alphabetical)
                 const order = 'asc'; // or 'desc' for descending order
-                filteredMedias = filterByTitle(selectedPhotographerMedias, order);
+                filteredMedias = filterByTitle(medias, order);
             }
 
             // Display filtered media
@@ -51,8 +44,23 @@ async function main() {
 
         // Filter media by popularity by default
         filterDropdown.value = 'popularity';
-        const defaultFilteredMedias = filterByPopularity(selectedPhotographerMedias);
+        const defaultFilteredMedias = filterByPopularity(medias);
         displayMedias(defaultFilteredMedias);
+
+        // Calculate and display global sum of likes and price
+        const likePriceDiv = document.getElementById('like-price');
+        const likesSumElement = document.createElement('p');
+        const totalLikes = getTotalLikes(medias);
+        const heartIcon = document.createElement('img');
+        heartIcon.src = `assets/images/blackHeartFilled.png`;
+        const phPrice = document.createElement('p');
+        phPrice.textContent = `${photographer.price} €/jour`;
+        updateLikesSum(likesSumElement, totalLikes);
+        likePriceDiv.appendChild(likesSumElement);
+        likePriceDiv.appendChild(heartIcon);
+        likePriceDiv.appendChild(phPrice);
+
+
 
         //console.log(selectedPhotographer);
     } catch (error) {
@@ -71,6 +79,15 @@ function displayMedias(medias) {
 
         mediaContainer.appendChild(mediaItem)
     });
+}
+
+function getTotalLikes(medias) {
+    return medias.reduce((sum, media) => sum + media.likes, 0);
+}
+
+function updateLikesSum(likesSumElement, totalLikes) {
+    likesSumElement.textContent = `${totalLikes}`;
+    console.log(updateLikesSum)
 }
 
 main();

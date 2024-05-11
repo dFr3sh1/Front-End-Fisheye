@@ -50,25 +50,3 @@ export function updateLikeCounter(mediaId, newLikes) {
         }
     }
 }
-
-
-// const popularityOption = document.getElementById('popularityOption');
-// const dateOption = document.getElementById('dateOption');
-// const titleOption = document.getElementById('titleOption');
-
-// popularityOption.addEventListener('click', () => filterByPopularity(data));
-// dateOption.addEventListener('click', () => filterByDate(data, 'recent'));
-// titleOption.addEventListener('click', () => filterByTitle(data));
-
-//Function to filter
-// document.getElementById('filter').addEventListener('change', function() {
-//     const selectedOption = this.value;
-//     if (selectedOption === 'popularity') {
-//         const sortedMedias = filterByPopularity(media);
-//     } else if (selectedOption === 'date') {
-//         const sortedMedias = filterByDate(media, 'recent');
-//     } else if (selectedOption === 'title') {
-//         const keyword = '' //To replace with the user keyword
-//         const filteredMedia = filterByTitle(media, keyword);
-//     }
-// });
