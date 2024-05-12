@@ -4,6 +4,7 @@ import MediaTemplate from "../templates/medias.js";
 import displayHeaderPh from "../templates/banner.js";
 import { getPhotographerById, getMediasByPhotographerId }  from "../utils/getter.js";
 import { filterByPopularity, filterByDate, filterByTitle } from "../utils/mediaFilter.js";
+import { initializeContactForm, closeModal } from "../utils/contactForm.js";
 
 async function main() {
     try {
@@ -60,8 +61,7 @@ async function main() {
         likePriceDiv.appendChild(heartIcon);
         likePriceDiv.appendChild(phPrice);
 
-
-
+        initializeContactForm()
         //console.log(selectedPhotographer);
     } catch (error) {
         console.error('Error:', error);

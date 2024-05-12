@@ -1,0 +1,85 @@
+@import './variables';
+
+.modal {
+    position: relative;
+    display: none;
+    bottom: 190px;
+    width: 699px;
+    margin: 5px;
+    left: calc(50% - 300px);
+}   
+
+.form-title-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.close-btn {
+    width: auto;
+    margin: 0;
+    padding: inherit;
+    padding-top: 12px ;
+    background: $tertiaire-main-color;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: red;
+}
+
+form {
+    width: 100%;
+    margin: auto;
+    padding: 35px;
+    background: $tertiaire-main-color;
+    border-radius: 5px;
+}
+
+.form-title {
+    color: #000;
+    font-family: "DM Sans";
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+textarea {
+    width: 100%;
+}
+
+button {
+    padding: 8px 20px;
+    cursor: pointer;
+}
+
+.thanks-for-contacting {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.thanks-for-contacting p {
+    margin: 0;
+}

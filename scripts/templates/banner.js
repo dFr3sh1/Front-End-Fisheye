@@ -1,4 +1,6 @@
 import PhotographerTemplate from "./photographer.js";
+import initializeContactForm from "../utils/contactForm.js";
+
 
 function displayHeaderPh(photographe) {
     const photographer = document.getElementById('photographer');    
@@ -20,14 +22,13 @@ function displayHeaderPh(photographe) {
     tagline.textContent = photographerModel.tagline;
     tagline.classList.add('contactTagline')
     const contactBtn = document.createElement('button');
-    contactBtn.classList.add('mainBtn', 'button')
+    contactBtn.classList.add('mainBtn', 'button', 'contact-btn')
     contactBtn.textContent = "Contactez-moi"
     const photographePortrait = photographerModel.getUserCardDOM().querySelector('.portrait-class');
     photographePortrait.classList.add('headerPortrait');
     const indexedClass = `portrait-id-${photographe.id}`;
     photographePortrait.classList.add(indexedClass);
     photographePortrait.setAttribute('aria-label', 'Photographer Portrait'); 
-
 
     // Ensure the retrieved elements exist before appending them
     if (divHeader || h1 || ph_country_div || city || country || tagline || contactBtn || photographePortrait) {
@@ -42,8 +43,9 @@ function displayHeaderPh(photographe) {
         photographer.appendChild(photographePortrait);
     } else {
         console.error("Title, country or tagline info not found.");
-    }    
-    
+    }
+    initializeContactForm(photographerModel.name);
+    console.log(initializeContactForm);
 }
 
-export default displayHeaderPh
+export default displayHeaderPh;

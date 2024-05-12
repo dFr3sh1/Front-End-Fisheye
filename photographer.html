@@ -1,4 +1,3 @@
-<!-- photographer.html -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,14 +7,37 @@
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <title>Fisheye</title>
 </head>
-<body>
+<body id="body">
 <header class="container">
     <a href="index.html">
         <img src="assets/images/logo.png" class="logo logo-photographe" alt="fisheye logo"/>
     </a>
 </header>
-<main class="container">
+<main class="container" id="main-wrapper" aria-hidden="false">
     <div id="photographer"></div>
+    <div class="modal" id="contact_modal" aria-placeholder="true" role="dialog" aria-describedby="form-title">
+        <form id="contact-form" action="">
+            <div class="form-title-div">
+                <h2 class="form-title" id="form-title"></h2>
+                <button class="close-btn">
+                    <img src="./assets/icons/close-24px 1.png" alt="Fermer">
+                </button>
+            </div>
+            <label for="fname">Prénom</label>
+            <input type="text" name="fname" id="fname" required><br><br>
+            <label for="lname">Nom</label>
+            <input type="text" name="lname" id="lname" required><br><br>
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" required><br><br>
+            <label for="message">Votre message</label>
+            <textarea name="message" id="message" rows="8" required></textarea><br><br>
+            <button type="submit" class="mainBtn">Contactez-moi</button>
+        </form>
+    </div>
+    <div class="thanks-for-contacting" id="thanks-for-contacting">
+        <p>Merci pour votre message !</p>
+        <button id="close-thanks">Fermer</button>
+    </div>
     <div class="container">
         <label for="filter">Filtrer par :</label>
         <select class="filter-option" name="filter" id="filter">
@@ -24,17 +46,9 @@
             <option class="filter-option" value="title">Titre</option>
         </select>
     </div>
-    <!--button id="filterBtn" aria-haspopup="listbox" aria-expanded="false">Filtrer par</button>
-    <div id="filterOptions" role="listbox" aria-labelledby="filterBtn" aria-activedescendant="selectedOption">
-        <button id="popularityOption" role="option" aria-selected="false">Popularité</button>
-        <button id="dateOption" role="option" aria-selected="false">Date</button>
-        <button id="titleOption" role="option" aria-selected="false">Titre</button>
-    </div-->
-    <div class="media-gallery" id="medias-gallery">
-        <!--i class="fa-solid fa-heart" style="color: #901c1c;"></i-->
-    </div>
+    <div class="media-gallery" id="medias-gallery"></div>
 </main>
-<div class="like-price" id="like-price"></div>
+<div class="like-price " id="like-price"></div>
 <footer class="container">
     <p class="p-footer">&copy; 2024 Photographers Directory</p>
 </footer>

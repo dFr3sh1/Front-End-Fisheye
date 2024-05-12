@@ -1,4 +1,12 @@
 body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin: auto;
     max-width: 1440px;
+}
+
+.no-scroll {
+    overflow: hidden;
 }

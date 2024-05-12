@@ -66,7 +66,3 @@ class PhotographerTemplate {
 console.log(PhotographerTemplate)
 
 export default PhotographerTemplate
-
-
-
-
