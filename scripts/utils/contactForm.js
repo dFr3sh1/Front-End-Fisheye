@@ -32,12 +32,21 @@ export function initializeContactForm(photographerName) {
 
     document.getElementById('contact-form').addEventListener('submit', function(event) {
         event.preventDefault();
-        thanksForContacting.style.display = 'block';
-        thanksForContacting.style.zIndex = 2
+        thanksForContacting.style.display = 'flex';
         modal.style.display = 'none';
         // mediaGallery.style.display = 'none';
         modal.setAttribute('aria-hidden', 'false');
         closeThanksBtn.focus();
+        //To reset the form
+        // Reset form input fields
+        const form = document.getElementById('contact-form');
+        const inputs = form.getElementsByTagName('input');
+        const textarea = form.getElementsByTagName('textarea')[0];
+
+        for (let input of inputs) {
+            input.value = ''; // Clear input field value
+        }
+        textarea.value = ''; // Clear textarea value
     });
 
     closeThanksBtn.addEventListener('click', function() {

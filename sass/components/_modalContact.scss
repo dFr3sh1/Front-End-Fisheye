@@ -1,9 +1,14 @@
 @import './variables';
+@import './button';
+
+.header-ph {
+    z-index: -3;
+}
 
 .modal {
     position: relative;
     display: none;
-    bottom: 190px;
+    margin-top: -65px;
     width: 699px;
     margin: 5px;
     left: calc(50% - 300px);
@@ -15,6 +20,16 @@
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
+}
+
+.filter {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+    z-index: 1; /* Ensure it's above mediaGallery */
 }
 
 .close-btn {
@@ -51,6 +66,7 @@ form {
 label {
     display: block;
     margin-bottom: 5px;
+    font-size: 36px;
 }
 
 input[type="text"],
@@ -58,10 +74,12 @@ input[type="email"] {
     width: 100%;
     height: 50px;
     margin-bottom: 10px;
+    font-size: 24px;
 }
 
 textarea {
     width: 100%;
+    font-size: 24px;
 }
 
 button {
@@ -71,15 +89,27 @@ button {
 
 .thanks-for-contacting {
     display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     position: fixed;
+    width: 300px;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
     padding: 20px;
+    width: 600px;
+    border-radius: 5px;
+    gap: 40px;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+    background: $tertiaire-main-color;
+    color: #000;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .thanks-for-contacting p {
     margin: 0;
+    padding: 30px;
+    font-size: 36px;
+    line-height: normal;
 }

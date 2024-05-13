@@ -39,8 +39,7 @@ img.logo-photographe  {
 }
 
 .filter-option {
-    margin-top: 20px;
-    margin-bottom: 60px;
+    margin: 60px;
 
     padding: 20px;
 
@@ -52,6 +51,12 @@ img.logo-photographe  {
 
     background-color: $main-color;
     color:rgba(255, 255, 255, 1);
+}
+
+.filterSelection {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .divHeader {
