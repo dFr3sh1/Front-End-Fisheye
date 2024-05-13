@@ -1,6 +1,7 @@
 //Mettre le code Javascript lié à la page photographer.html
 //Récupéerer data from json file
-import {getPhotographers, getMedias} from '../utils/getter.js'
+import {getPhotographers, getMedias} from '../utils/getter.js';
+import openLightbox from '../utils/lightboxModal.js';
 
 class MediaTemplate {
     constructor(data){
@@ -36,12 +37,17 @@ class MediaTemplate {
             thumbnail.appendChild(video);
             
         } else {
+            //To create image element
             const image = document.createElement('img');
-            image.classList.add('media-mage');
+            image.classList.add('media-image');
             image.src =  `/assets/photographers/${this.photographerId}/${this.image}`;
 
-            thumbnail.appendChild(image)
+            //Add event listener to open the lightbox once clicked the image
+            image.addEventListener('click', () => {
+                openLightbox(image.src, this.title);
+            });
 
+            thumbnail.appendChild(image)
         }
 
         const title = document.createElement('h2')
