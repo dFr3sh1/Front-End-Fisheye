@@ -23,11 +23,10 @@ class MediaTemplate {
         const thumbnail = document.createElement('div');
         thumbnail.classList.add('thumbnail');
         const date = this.date
-            
-        //Conditional to check if it is video or image
 
+        // Conditional to check if it is video or image
         if (this.video) {
-            //To create video element
+            // Create video element
             const video = document.createElement('video');
             video.classList.add('media-video');
             video.src = `/assets/photographers/${this.photographerId}/${this.video}`;
@@ -37,14 +36,14 @@ class MediaTemplate {
             thumbnail.appendChild(video);
             
         } else {
-            //To create image element
+            // Create image element
             const image = document.createElement('img');
             image.classList.add('media-image');
             image.src =  `/assets/photographers/${this.photographerId}/${this.image}`;
 
-            //Add event listener to open the lightbox once clicked the image
+            // Add event listener to open the lightbox once clicked the image
             image.addEventListener('click', () => {
-                openLightbox(image.src, this.title);
+                openLightbox(this.photographerId, this.title);
             });
 
             thumbnail.appendChild(image)
@@ -90,6 +89,7 @@ class MediaTemplate {
         return mediaItem
             
     };
+    
 }
 
 console.log(MediaTemplate);

@@ -85,9 +85,12 @@ function getTotalLikes(medias) {
     return medias.reduce((sum, media) => sum + media.likes, 0);
 }
 
+
+
 function updateLikesSum(likesSumElement, totalLikes) {
+
     likesSumElement.textContent = `${totalLikes}`;
-    console.log(updateLikesSum)
+    console.log(likesSumElement, totalLikes)
 }
 
 main();
