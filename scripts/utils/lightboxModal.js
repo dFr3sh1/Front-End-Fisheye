@@ -1,15 +1,20 @@
 import MediaTemplate from "../templates/medias.js";
 import { getMediasByPhotographerId } from '../utils/getter.js';
 
+let currentIndex = -1;
+let medias = [];  // Declare medias globally to use in event listeners
+
 export default async function openLightbox(photographerId, title) {
     // Fetch the medias array using photographerId
-    const medias = await getMediasByPhotographerId(photographerId);
-    
+    if (!medias.length) {
+        medias = await getMediasByPhotographerId(photographerId);
+    }
+
     const lightbox = document.getElementById('lightbox');
     const lightboxContent = document.getElementById('lightbox-content');
-    
+
     // Clear existing content
-    //lightboxContent.innerHTML = '';
+    lightboxContent.innerHTML = '';
 
     // Find the index of the media with the matching title
     const index = medias.findIndex(media => media.title === title);
@@ -18,49 +23,87 @@ export default async function openLightbox(photographerId, title) {
         return;
     }
 
-    // Initially hide lightbox
-    lightbox.style.display = 'none';
+    currentIndex = index; // Set the current index
 
-    // Call the element in the DOM
-    const image = document.getElementById('lightbox-image');
-    image.src = `/assets/photographers/${photographerId}/${medias[index].image}`;
-    image.alt = medias[index].title;
-    image.setAttribute('role', 'image');
-    image.setAttribute('aria-label', 'image closeup view');
-    image.setAttribute('aria-describedby', 'image-description');
-    console.log(image)
+    // Verify if media is image or video to create the right HTML element
+    let mediaElement;
+    if (medias[index].image) {
+        mediaElement = document.createElement('img');
+        mediaElement.src = `/assets/photographers/${photographerId}/${medias[index].image}`;
+        console.log(`Displaying image: ${mediaElement.src}`);
+    } else if (medias[index].video) {
+        mediaElement = document.createElement('video');
+        mediaElement.src = `/assets/photographers/${photographerId}/${medias[index].video}`;
+        mediaElement.controls = true;
+        console.log(`Displaying video: ${mediaElement.src}`);
+    } else {
+        console.error('Media type not recognized');
+        return;
+    }
+    mediaElement.alt = medias[index].title;
+    mediaElement.setAttribute('role', 'media');
+    mediaElement.setAttribute('aria-label', 'media closeup view');
+    mediaElement.setAttribute('aria-describedby', 'image-description');
+    mediaElement.classList.add('lightbox-media');
+    console.log(mediaElement);
 
     // Create title element
-    const titleMedia = document.getElementById('image-description');
+    const titleMedia = document.createElement('h3');
+    titleMedia.id = 'image-description';
+    titleMedia.classList.add('lightbox-title');
     titleMedia.textContent = medias[index].title;
-    //titleMedia.id = 'image-description';
     titleMedia.setAttribute('role', 'text');
-    titleMedia.style.position = 'absolute';
+    console.log(titleMedia);
 
     // Show lightbox
     lightbox.style.display = 'flex';
     lightbox.style.height = '83vh';
-    const lightboxImageContainer = document.getElementById('lightbox-image-container');
+    const lightboxImageContainer = document.createElement('div');
+    lightboxImageContainer.id = 'lightbox-image-container';
+    lightboxImageContainer.classList.add('lightbox-image-container');
     lightboxImageContainer.style.display = 'flex';
     lightboxImageContainer.style.height = '83vh';
-    const imageDescriptionDiv = document.getElementById('image-description-div');
-    
-    //imageDescriptionDiv.classList.add('image-description-div');
+    const imageDescriptionDiv = document.createElement('div');
+    imageDescriptionDiv.id = 'image-description-div';
+    imageDescriptionDiv.classList.add('image-description-div');
 
-    imageDescriptionDiv.appendChild(titleMedia);
-    lightboxImageContainer.appendChild(imageDescriptionDiv);
-    
+    // Show/hide close, previous, and next buttons
+    const prevButton = document.createElement('button');
+    prevButton.id = 'prev-button';
+    prevButton.classList.add('lightbox-button', 'isDisplayed');
+    const prevButtonImage = document.createElement('img');
+    prevButtonImage.src = `./assets/icons/precedent-btn.png`;
+    prevButton.appendChild(prevButtonImage);
 
-    // Show/hide previous and next buttons
-    const closeBtn = document.getElementById('close-button');
-    const prevButton = document.getElementById('prev-button');
-    const nextButton = document.getElementById('next-button');
-    console.log(prevButton)
-    console.log(nextButton)
-    closeBtn.style.display = index === 0 ? 'none' : 'flex';
+    const nextButton = document.createElement('button');
+    nextButton.id = 'next-button';
+    nextButton.classList.add('lightbox-button', 'isDisplayed');
+    const nextButtonImage = document.createElement('img');
+    nextButtonImage.src = `./assets/icons/next-btn.png`;
+    nextButton.appendChild(nextButtonImage);
+
+    const closeBtn = document.createElement('button');
+    closeBtn.id = 'close-button';
+    closeBtn.classList.add('lightbox-button', 'isDisplayed');
+    const closeButtonImage = document.createElement('img');
+    closeButtonImage.src = `./assets/icons/close-lightbox-btn.png`;
+    closeBtn.appendChild(closeButtonImage);
+
+    console.log(prevButton);
+    console.log(nextButton);
+    console.log(closeBtn);
+
     prevButton.style.display = index === 0 ? 'none' : 'flex';
     nextButton.style.display = index === medias.length - 1 ? 'none' : 'flex';
-    
+    closeBtn.style.display = index === medias.length - 1 ? 'none' : 'flex';
+
+    imageDescriptionDiv.appendChild(titleMedia);
+    lightboxImageContainer.appendChild(mediaElement);
+    lightboxImageContainer.appendChild(imageDescriptionDiv);
+    lightboxContent.appendChild(lightboxImageContainer);
+    lightboxContent.appendChild(prevButton);
+    lightboxContent.appendChild(nextButton);
+    lightboxContent.appendChild(closeBtn);
 
     // Close lightbox when clicking outside the content or pressing Escape key
     lightbox.onclick = function(event) {
@@ -69,32 +112,38 @@ export default async function openLightbox(photographerId, title) {
         }
     };
 
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape') {
-            closeLightbox();
-        }
-    });
-
-    // Handle keyboard navigation
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'ArrowLeft' && index > 0) {
-            openLightbox(photographerId, medias[index - 1].title); // Update with previous title
-        } else if (event.key === 'ArrowRight' && index < medias.length - 1) {
-            openLightbox(photographerId, medias[index + 1].title); // Update with next title
-        }
-    });
-
     // Handle click events for previous and next buttons
     prevButton.onclick = function() {
-        if (index > 0) {
-            openLightbox(photographerId, medias[index - 1].title); // Update with previous title
+        if (currentIndex > 0) {
+            openLightbox(photographerId, medias[currentIndex - 1].title); // Update with previous title
         }
     };
     nextButton.onclick = function() {
-        if (index < medias.length - 1) {
-            openLightbox(photographerId, medias[index + 1].title); // Update with next title
+        if (currentIndex < medias.length - 1) {
+            openLightbox(photographerId, medias[currentIndex + 1].title); // Update with next title
         }
     };
+
+    // Ensure only one event listener for keyboard navigation
+    document.removeEventListener('keydown', handleKeydown);
+    document.addEventListener('keydown', handleKeydown);
+
+    // Close lightbox when clicking on the close button
+    closeBtn.onclick = function() {
+        closeLightbox();
+    };
+}
+
+// Keyboard navigation handler function
+function handleKeydown(event) {
+    const photographerId = sessionStorage.getItem('photographerId');
+    if (event.key === 'ArrowLeft' && currentIndex > 0) {
+        openLightbox(photographerId, medias[currentIndex - 1].title); // Update with previous title
+    } else if (event.key === 'ArrowRight' && currentIndex < medias.length - 1) {
+        openLightbox(photographerId, medias[currentIndex + 1].title); // Update with next title
+    } else if (event.key === 'Escape') {
+        closeLightbox();
+    }
 }
 
 // Function to close the lightbox
@@ -102,5 +151,14 @@ export function closeLightbox() {
     const lightbox = document.getElementById('lightbox');
     lightbox.style.display = 'none';
     const mediaGallery = document.getElementById('medias-gallery');
-    mediaGallery.classList.remove('.opacity')
+    mediaGallery.classList.remove('opacity');
+    // Remove event listener when lightbox is closed
+    document.removeEventListener('keydown', handleKeydown);
+}
+
+// Function to fetch and store medias array and photographerId
+export async function initializeLightbox(photographerId) {
+    medias = await getMediasByPhotographerId(photographerId);
+    sessionStorage.setItem('medias', JSON.stringify(medias));
+    sessionStorage.setItem('photographerId', photographerId);
 }

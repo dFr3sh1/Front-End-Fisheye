@@ -1,4 +1,5 @@
 .lightbox {
+    display: none;
     position: fixed;
     flex-direction: column;
     top: 100px;
@@ -25,7 +26,7 @@
     width: 69vw;
 
 }
-.lightbox-image {
+.lightbox-media {
     position: absolute;
     width: 1050px;
     height: 900px;

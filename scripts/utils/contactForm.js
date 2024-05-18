@@ -16,8 +16,8 @@ export function initializeContactForm(photographerName) {
     formTitle.innerHTML = `Contactez-moi <br>${photographerName}`;
 
     contactBtn.addEventListener('click', function() {
-        modal.style.display = "flex";
-        document.body.classList.add('no-scroll');
+        modal.style.display = 'flex';
+        //document.body.style.position = 'fixed';
         modal.setAttribute('aria-hidden', 'false');
         closeBtn.focus();
     });
@@ -51,7 +51,7 @@ export function initializeContactForm(photographerName) {
 
     closeThanksBtn.addEventListener('click', function() {
         thanksForContacting.style.display = 'none';
-        document.body.classList.remove('no-scroll');
+        //document.body.classList.remove('no-scroll');
         mediaGallery.style.display = 'grid'
         contactBtn.focus();
     });
@@ -59,7 +59,7 @@ export function initializeContactForm(photographerName) {
     document.addEventListener('keydown', function(event) {
         if (event.key === "Escape" && thanksForContacting.style.display === 'block') {
             thanksForContacting.style.display = 'none';
-            document.body.classList.remove('no-scroll');
+            //document.body.classList.remove('no-scroll');
             mediaGallery.style.display = 'grid'
             contactBtn.focus();
         }
@@ -71,7 +71,7 @@ export function closeModal() {
     const contactBtn = document.querySelector('.contact-btn');
 
     modal.style.display = "none";
-    document.body.classList.remove('no-scroll');
+    //document.body.classList.remove('no-scroll');
     modal.setAttribute('aria-hidden', 'true');
     contactBtn.focus();
 }

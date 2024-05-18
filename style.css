@@ -171,12 +171,13 @@ button {
   z-index: -3; }
 
 .modal {
-  position: relative;
+  position: fixed;
   display: none;
   margin-top: -65px;
   width: 699px;
   margin: 5px;
-  left: calc(50% - 300px); }
+  left: calc(50% - 300px);
+  z-index: 1; }
 
 .form-title-div {
   display: flex;
@@ -269,6 +270,7 @@ button {
   line-height: normal; }
 
 .lightbox {
+  display: none;
   position: fixed;
   flex-direction: column;
   top: 100px;
@@ -292,7 +294,7 @@ button {
   justify-content: flex-start;
   width: 69vw; }
 
-.lightbox-image {
+.lightbox-media {
   position: absolute;
   width: 1050px;
   height: 900px;
