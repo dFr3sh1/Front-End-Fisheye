@@ -44,7 +44,7 @@ export default async function openLightbox(photographerId, title) {
     mediaElement.setAttribute('role', 'media');
     mediaElement.setAttribute('aria-label', 'media closeup view');
     mediaElement.setAttribute('aria-describedby', 'image-description');
-    mediaElement.classList.add('lightbox-media');
+    mediaElement.classList.add('lightbox-media', 'shadow');
     console.log(mediaElement);
 
     // Create title element

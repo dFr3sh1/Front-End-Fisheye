@@ -1,17 +1,24 @@
-let isInitialized = false
+let isInitialized = false;
 
 export function initializeContactForm(photographerName) {
     if (isInitialized) {
         return; // Prevent re-initialization
     }
     isInitialized = true;
+    
     const contactBtn = document.querySelector('.contact-btn');
     const modal = document.getElementById("contact_modal");
     const formTitle = document.getElementById('form-title');
-    const mediaGallery = document.getElementById('medias-gallery')
+    const mediaGallery = document.getElementById('medias-gallery');
     const closeBtn = document.querySelector('.close-btn');
     const thanksForContacting = document.getElementById('thanks-for-contacting');
     const closeThanksBtn = document.getElementById('close-thanks');
+
+    // Access the paragraph with the class 'thanks-modal' inside thanksForContacting
+    const thanksModalP = thanksForContacting.querySelector('.thanks-modal');
+
+    // Get the first name of the photographer
+    const photographerFirstName = photographerName.split(' ')[0];
 
     formTitle.innerHTML = `Contactez-moi <br>${photographerName}`;
 
@@ -32,27 +39,30 @@ export function initializeContactForm(photographerName) {
 
     document.getElementById('contact-form').addEventListener('submit', function(event) {
         event.preventDefault();
+        
+        // Retrieve and log form values
+        const form = event.target;  // Reference to the form
+        const formData = new FormData(form);  // Get form data
+        const formEntries = Object.fromEntries(formData.entries());  // Convert to an object
+        console.log('Form Data:', formEntries);  // Log form data
+
+        // Update the thanks-modal p element content
+        thanksModalP.textContent = `Merci de m'avoir contacté. Je vous répondrai au plus vite, \n ${photographerFirstName}.`;
+
         thanksForContacting.style.display = 'flex';
         modal.style.display = 'none';
         // mediaGallery.style.display = 'none';
         modal.setAttribute('aria-hidden', 'false');
         closeThanksBtn.focus();
-        //To reset the form
-        // Reset form input fields
-        const form = document.getElementById('contact-form');
-        const inputs = form.getElementsByTagName('input');
-        const textarea = form.getElementsByTagName('textarea')[0];
 
-        for (let input of inputs) {
-            input.value = ''; // Clear input field value
-        }
-        textarea.value = ''; // Clear textarea value
+        // Reset form input fields
+        form.reset();  // Reset the form
     });
 
     closeThanksBtn.addEventListener('click', function() {
         thanksForContacting.style.display = 'none';
         //document.body.classList.remove('no-scroll');
-        mediaGallery.style.display = 'grid'
+        mediaGallery.style.display = 'grid';
         contactBtn.focus();
     });
 
@@ -60,7 +70,7 @@ export function initializeContactForm(photographerName) {
         if (event.key === "Escape" && thanksForContacting.style.display === 'block') {
             thanksForContacting.style.display = 'none';
             //document.body.classList.remove('no-scroll');
-            mediaGallery.style.display = 'grid'
+            mediaGallery.style.display = 'grid';
             contactBtn.focus();
         }
     });
@@ -76,4 +86,4 @@ export function closeModal() {
     contactBtn.focus();
 }
 
-export default initializeContactForm
+export default initializeContactForm;

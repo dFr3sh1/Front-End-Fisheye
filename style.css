@@ -170,6 +170,9 @@ button {
 .header-ph {
   z-index: -3; }
 
+.shadow {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); }
+
 .modal {
   position: fixed;
   display: none;
@@ -242,6 +245,7 @@ textarea {
 
 button {
   padding: 8px 20px;
+  margin-bottom: 36px;
   cursor: pointer; }
 
 .thanks-for-contacting {
@@ -260,8 +264,7 @@ button {
   z-index: 2;
   transform: translate(-50%, -50%);
   background: #db8876;
-  color: #000;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+  color: #000; }
 
 .thanks-for-contacting p {
   margin: 0;
