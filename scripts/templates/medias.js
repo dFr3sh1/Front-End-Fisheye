@@ -58,8 +58,10 @@ class MediaTemplate {
         likes.classList.add('likes');
         let counter = document.createElement('p')
         counter.textContent = this.likes
+        counter.classList.add('likes-counter')
         const like = document.createElement('img');
         like.src = `/assets/images/redHeartFilled.png`;
+        like.classList.add('like-button');
         like.addEventListener('click', () => {
             if (like.classList.contains('liked')) {
                 this.likes--;

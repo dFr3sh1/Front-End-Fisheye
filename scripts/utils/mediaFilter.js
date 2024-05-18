@@ -39,14 +39,13 @@ export function filterByTitle(media, order) {
     return sortedMedia;
 }
 
-//Function to update likes
 // Function to update the like counter
-export function updateLikeCounter(mediaId, newLikes) {
-    const mediaItem = document.getElementById(`media-item-${mediaId}`);
-    if (mediaItem) {
-        const counter = mediaItem.querySelector('.likes p');
-        if (counter) {
-            counter.textContent = newLikes; // Update likes count
-        }
-    }
-}
+// export function updateLikeCounter(mediaId, newLikes) {
+//     const mediaItem = document.getElementById(`media-item-${mediaId}`);
+//     if (mediaItem) {
+//         const counter = mediaItem.querySelector('.likes p');
+//         if (counter) {
+//             counter.textContent = newLikes; // Update likes count
+//         }
+//     }
+// }
