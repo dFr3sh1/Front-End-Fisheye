@@ -4,6 +4,8 @@ import displayHeaderPh from "../templates/banner.js";
 import { getPhotographerById, getMediasByPhotographerId } from "../utils/getter.js";
 import { filterByPopularity, filterByDate, filterByTitle } from "../utils/mediaFilter.js";
 import { initializeContactForm, closeModal } from "../utils/contactForm.js";
+import lightbox from "../utils/lightboxModal.js";
+
 
 async function main() {
     try {
@@ -14,7 +16,7 @@ async function main() {
         displayHeaderPh(photographer);
 
         // Fetch the media for the selected photographer
-        const medias = await getMediasByPhotographerId(id);
+        let medias = await getMediasByPhotographerId(id);
         console.log(medias);
 
         // Display medias
@@ -24,27 +26,26 @@ async function main() {
         const filterDropdown = document.getElementById('filter');
         filterDropdown.addEventListener('change', function () {
             const selectedOption = this.value;
-            let filteredMedias;
             if (selectedOption === 'popularity') {
-                filteredMedias = filterByPopularity(medias);
+                medias = filterByPopularity(medias);
             } else if (selectedOption === 'date') {
-                filteredMedias = filterByDate(medias, 'recent');
+                medias = filterByDate(medias, 'recent');
             } else if (selectedOption === 'title') {
                 // For title filter, retrieve the keyword from the input field
                 const keyword = document.getElementById('filter-title').value;
                 // Determine sorting order (alphabetical)
                 const order = 'asc'; // or 'desc' for descending order
-                filteredMedias = filterByTitle(medias, order);
+                medias = filterByTitle(medias, order);
             }
 
             // Display filtered media
-            displayMedias(filteredMedias);
+            displayMedias(medias);
         });
 
         // Filter media by popularity by default
         filterDropdown.value = 'popularity';
-        const defaultFilteredMedias = filterByPopularity(medias);
-        displayMedias(defaultFilteredMedias);
+        medias= filterByPopularity(medias);
+        displayMedias(medias);
 
         // Calculate and display global sum of likes and price
         const likePriceDiv = document.getElementById('like-price');
@@ -63,6 +64,14 @@ async function main() {
 
         initializeContactForm();
 
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const closeBtn = document.getElementById('close-button');
+
+        prevButton.addEventListener('click', () => lightbox.previous(medias));
+        nextButton.addEventListener('click', () => lightbox.next(medias));
+        closeBtn.addEventListener('click', () => lightbox.close())
+
     } catch (error) {
         console.error('Error:', error);
     }
@@ -73,7 +82,7 @@ function displayMedias(medias) {
     mediaContainer.innerHTML = ""; // Clear existing content
 
     medias.forEach((media) => {
-        const mediaModel = new MediaTemplate(media);        
+        const mediaModel = new MediaTemplate(media, lightbox);        
         const mediaItem = mediaModel.getMediasGallery();
 
         // Add event listener for like button
@@ -87,7 +96,7 @@ function displayMedias(medias) {
                     media.likes++;
                     media.liked = true;
                 }
-                const likesCountElement = document.querySelector('.likes-counter');
+                const likesCountElement = document.querySelector('.likes');
                 if (likesCountElement) {
                     likesCountElement.textContent = media.likes;
                     updateTotalLikes(medias);
@@ -98,6 +107,9 @@ function displayMedias(medias) {
         mediaContainer.appendChild(mediaItem);
     });
 }
+
+
+
 
 function getTotalLikes(medias) {
     return medias.reduce((sum, media) => sum + media.likes, 0);

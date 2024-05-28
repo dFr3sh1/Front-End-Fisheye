@@ -41,6 +41,7 @@ export async function getMediasByPhotographerId(id) {
         const data = await response.json();
         const selected = data.media.filter(media => media.photographerId === id)
         return selected; // Return only the medias from the photographer array
+
     } catch(error) {
         console.error('Error loading medias', error);
         return []; // Return an empty array in case of error
