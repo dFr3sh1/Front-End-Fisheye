@@ -6,7 +6,6 @@ import { filterByPopularity, filterByDate, filterByTitle } from "../utils/mediaF
 import { initializeContactForm, closeModal } from "../utils/contactForm.js";
 import lightbox from "../utils/lightboxModal.js";
 
-
 async function main() {
     try {
         const searchPhotographe = window.location.search;
@@ -44,7 +43,7 @@ async function main() {
 
         // Filter media by popularity by default
         filterDropdown.value = 'popularity';
-        medias= filterByPopularity(medias);
+        medias = filterByPopularity(medias);
         displayMedias(medias);
 
         // Calculate and display global sum of likes and price
@@ -83,33 +82,12 @@ function displayMedias(medias) {
 
     medias.forEach((media) => {
         const mediaModel = new MediaTemplate(media, lightbox);        
-        const mediaItem = mediaModel.getMediasGallery();
-
-        // Add event listener for like button
-        const likeButton = mediaItem.querySelector('.like-button');
-        if (likeButton) {
-            likeButton.addEventListener('click', function () {
-                if (media.liked) {
-                    media.likes--;
-                    media.liked = false;
-                } else {
-                    media.likes++;
-                    media.liked = true;
-                }
-                const likesCountElement = document.querySelector('.likes');
-                if (likesCountElement) {
-                    likesCountElement.textContent = media.likes;
-                    updateTotalLikes(medias);
-                }
-            });
-        }
-
+        const mediaItem = mediaModel.getMediasGallery(medias); // Pass medias array here
         mediaContainer.appendChild(mediaItem);
     });
+
+    updateTotalLikes(medias); // Pass the medias array here
 }
-
-
-
 
 function getTotalLikes(medias) {
     return medias.reduce((sum, media) => sum + media.likes, 0);
@@ -119,12 +97,13 @@ function updateLikesSum(likesSumElement, totalLikes) {
     likesSumElement.textContent = `${totalLikes}`;
 }
 
-function updateTotalLikes(medias) {
+export function updateTotalLikes(medias) {
     const totalLikes = getTotalLikes(medias);
     const likesSumElement = document.getElementById('total-likes');
     if (likesSumElement) {
         updateLikesSum(likesSumElement, totalLikes);
     }
 }
+
 
 main();

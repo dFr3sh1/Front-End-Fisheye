@@ -480,6 +480,9 @@ img.logo-photographe {
   align-items: center;
   color: #901c1c; }
 
+.pointer {
+  cursor: pointer; }
+
 .heart-icon {
   width: 24px;
   height: 24px;

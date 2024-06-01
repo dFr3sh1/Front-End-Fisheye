@@ -1,4 +1,5 @@
 import openLightbox from '../utils/lightboxModal.js'
+import {updateTotalLikes} from '../pages/photographer.js'
 
 class MediaTemplate {
     constructor(data, lightbox) {
@@ -10,11 +11,10 @@ class MediaTemplate {
         this.likes = data.likes;
         this.date = data.date;
         this.price = data.price;
-        this.openLightbox = lightbox.open
-
+        this.openLightbox = lightbox.open;
     }
 
-    getMediasGallery() {
+    getMediasGallery(medias) {
         const mediaGallery = document.querySelector(".media-gallery");
 
         if (!mediaGallery) {
@@ -23,10 +23,10 @@ class MediaTemplate {
         }
 
         const mediaItem = document.createElement('div');
-        mediaItem.setAttribute('tabindex', 0)
+        mediaItem.setAttribute('tabindex', 0);
         mediaItem.classList.add('media-item');
         const thumbnail = document.createElement('div');
-        thumbnail.classList.add('thumbnail');
+        thumbnail.classList.add('thumbnail', 'pointer');
 
         if (this.video) {
             const video = document.createElement('video');
@@ -34,38 +34,31 @@ class MediaTemplate {
             video.src = `/assets/photographers/${this.photographerId}/${this.video}`;
             video.controls = true;
             video.autoplay = false;
-            video.addEventListener('click', () => {
-                this.openLightbox({
-                    id: this.id,
-                    photographerId: this.photographerId,
-                    video: this.video
-                });
-            });
-
             thumbnail.appendChild(video);
         } else {
             const image = document.createElement('img');
             image.classList.add('media-image');
             image.src = `/assets/photographers/${this.photographerId}/${this.image}`;
-            image.addEventListener('click', () => {
-                this.openLightbox({
-                    id: this.id,
-                    photographerId: this.photographerId,
-                    image: this.image,
-                    title: this.title
-                });
-            });
-
             thumbnail.appendChild(image);
         }
 
         const title = document.createElement('h2');
-        title.classList.add('title');
+        title.classList.add('title', 'pointer');
         title.textContent = this.title;
         title.id = "filter-title";
 
-        title.addEventListener('click', () => {
-            openLightbox(this.photographerId, this.id, this.medias);
+        const pointerItems = [thumbnail, title];
+
+        pointerItems.forEach(item => {
+            item.addEventListener('click', () => {
+                this.openLightbox({
+                    id: this.id,
+                    photographerId: this.photographerId,
+                    video: this.video,
+                    image: this.image,
+                    title: this.title
+                });
+            });
         });
 
         const likes = document.createElement('div');
@@ -75,8 +68,9 @@ class MediaTemplate {
         counter.classList.add('likes');
         const like = document.createElement('img');
         like.src = `/assets/images/redHeartFilled.png`;
-        like.classList.add('like-button');
-        like.addEventListener('click', () => {
+        like.classList.add('like-button', 'pointer');
+        like.addEventListener('click', (event) => {
+            event.stopPropagation();
             if (like.classList.contains('liked')) {
                 this.likes--;
                 like.classList.remove('liked');
@@ -85,6 +79,14 @@ class MediaTemplate {
                 like.classList.add('liked');
             }
             counter.textContent = this.likes;
+
+            const mediaIndex = medias.findIndex(media => media.id === this.id);
+            if (mediaIndex !== -1) {
+                medias[mediaIndex].likes = this.likes;
+            }
+
+
+            updateTotalLikes(medias); // Ensure this updates the total likes globally with medias array
         });
 
         likes.appendChild(counter);
