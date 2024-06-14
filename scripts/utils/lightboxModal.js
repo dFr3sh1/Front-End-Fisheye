@@ -1,19 +1,19 @@
 
 function open(media) {
     
-    // Ouvrir la ligthbox
-    let lightbox = document.querySelector('#lightbox')
+    // Open the lightbox
+    const lightbox = document.querySelector('#lightbox')
     lightbox.classList.add('lightbox-active')
     lightbox.setAttribute('data-id', media.id)
 
-    // Afficher le media dans la lightbox
+    // Display media in the lightbox
     changeMedia(media)
 
 }
 
 function changeMedia(media) {
-    let image = document.querySelector('#lightbox-media')
-    let video = document.querySelector('#lightbox-video')
+    const image = document.querySelector('#lightbox-media')
+    const video = document.querySelector('#lightbox-video')
 
     if (media.image) {
         image.src = `./assets/photographers/${media.photographerId}/${media.image}`;
@@ -27,50 +27,31 @@ function changeMedia(media) {
         image.classList.remove('lightbox-media-active')
     } else {
         console.error('Media type not recognized');
-        return;
     }
 }
 
 function previous(medias) {
-    
-    let lightbox = document.querySelector('#lightbox')
-    let idMedia = Number(lightbox.getAttribute('data-id'))
-    let key = medias.findIndex(media => media.id === idMedia)
+    const lightbox = document.querySelector('#lightbox')
+    const idMedia = Number(lightbox.getAttribute('data-id'))
+    const key = medias.findIndex(media => media.id === idMedia)
 
-    let newKey = key
-
-    if(key - 1 < 0) {
-        newKey = medias.length - 1
-        changeMedia(medias[newKey])
-    } else {
-        newKey = key - 1
-        changeMedia(medias[newKey])
-    }
-
-    lightbox.setAttribute('data-id', medias[newKey].id)
-    
+    const newKey = key - 1 < 0 ? medias.length -1 : key - 1;
+    changeMedia(medias[newKey]);
+    lightbox.setAttribute('data-id', medias[newKey].id);  
 }
 
 function next(medias) {
-    let lightbox = document.querySelector('#lightbox')
-    let idMedia = Number(lightbox.getAttribute('data-id'))
-    let key = medias.findIndex(media => media.id === idMedia)
+    const lightbox = document.querySelector('#lightbox')
+    const idMedia = Number(lightbox.getAttribute('data-id'))
+    const key = medias.findIndex(media => media.id === idMedia)
 
-    let newKey = key
-
-    if(key + 1 === medias.length ) {
-        newKey = 0
-        changeMedia(medias[newKey])
-    } else {
-        newKey = key + 1
-        changeMedia(medias[newKey])
-    }
-
+    const newKey = key +1 === medias.length ? 0 : key + 1;
+    changeMedia(medias[newKey]);
     lightbox.setAttribute('data-id', medias[newKey].id)
 }
 
 function close() {
-    let lightbox = document.querySelector('#lightbox')
+    const lightbox = document.querySelector('#lightbox')
     lightbox.classList.remove('lightbox-active')
 }
 
