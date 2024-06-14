@@ -1,27 +1,32 @@
 //Function to filter medias by popularity
-export function filterByPopularity(media) {
-    // Create a copy of the media array before sorting
-    const mediaCopy = [...media];
-    return mediaCopy.sort((a, b) => b.likes - a.likes);
+export function filterByPopularity(medias) {
+    // Sort the medias in place based on likes
+    medias.sort((a, b) => b.likes - a.likes);
+
+    return medias
 }
 
 //Function to filter medias by date
-export function filterByDate(media, sortBy) {
+export function filterByDate(medias, sortBy) {
     if (sortBy === 'recent') {
-        return media.sort((a, b) => new Date(b.date) - new Date(a.date));
+        //Sort the medias in place based on date (recent first)
+        return medias.sort((a, b) => new Date(b.date) - new Date(a.date));
     } else if (sortBy === 'oldest') {
-        return media.sort((a, b) => new Date(a.date) - new Date(b.date));
+        //Sort the medias in place based on date (oldest first)
+        return medias.sort((a, b) => new Date(a.date) - new Date(b.date));
     }
+
+    return medias
 }
 
 //Function to filter media by title
 // Not used in this implementation
-export function filterByTitle(media, order) {
-    if (!media || media.length === 0) {
+export function filterByTitle(medias, order) {
+    if (!medias || medias.length === 0) {
         return [];
     }
     
-    const sortedMedia = [...media];
+    const sortedMedia = [...medias];
     
     sortedMedia.sort((a, b) => {
         const titleA = a.title.toLowerCase();

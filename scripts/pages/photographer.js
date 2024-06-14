@@ -3,7 +3,7 @@ import MediaTemplate from "../templates/medias.js";
 import displayHeaderPh from "../templates/banner.js";
 import { getPhotographerById, getMediasByPhotographerId } from "../utils/getter.js";
 import { filterByPopularity, filterByDate, filterByTitle } from "../utils/mediaFilter.js";
-import { initializeContactForm, closeModal } from "../utils/contactForm.js";
+import { initializeContactForm } from "../utils/contactForm.js";
 import lightbox from "../utils/lightboxModal.js";
 
 async function main() {
@@ -15,11 +15,12 @@ async function main() {
         displayHeaderPh(photographer);
 
         // Fetch the media for the selected photographer
+        const originalMedias = await getMediasByPhotographerId(id);
         let medias = await getMediasByPhotographerId(id);
         console.log(medias);
 
         // Display medias
-        displayMedias(medias);
+        let allMediasElements = displayMedias(medias);
 
         // Filter media based on the selected option in the dropdown
         const filterDropdown = document.getElementById('filter');
@@ -30,21 +31,19 @@ async function main() {
             } else if (selectedOption === 'date') {
                 medias = filterByDate(medias, 'recent');
             } else if (selectedOption === 'title') {
-                // For title filter, retrieve the keyword from the input field
                 const keyword = document.getElementById('filter-title').value;
-                // Determine sorting order (alphabetical)
                 const order = 'asc'; // or 'desc' for descending order
                 medias = filterByTitle(medias, order);
             }
 
             // Display filtered media
-            displayMedias(medias);
+            sortMedias(medias, allMediasElements);
         });
 
         // Filter media by popularity by default
         filterDropdown.value = 'popularity';
         medias = filterByPopularity(medias);
-        displayMedias(medias);
+        sortMedias(medias, allMediasElements);
 
         // Calculate and display global sum of likes and price
         const likePriceDiv = document.getElementById('like-price');
@@ -71,6 +70,8 @@ async function main() {
         nextButton.addEventListener('click', () => lightbox.next(medias));
         closeBtn.addEventListener('click', () => lightbox.close())
 
+        document.addEventListener('keydown', (event) => handleKeydown(event, medias));
+
     } catch (error) {
         console.error('Error:', error);
     }
@@ -78,15 +79,33 @@ async function main() {
 
 function displayMedias(medias) {
     const mediaContainer = document.getElementById('medias-gallery');
-    mediaContainer.innerHTML = ""; // Clear existing content
+
+    let allMediasElements = []
 
     medias.forEach((media) => {
         const mediaModel = new MediaTemplate(media, lightbox);        
-        const mediaItem = mediaModel.getMediasGallery(medias); // Pass medias array here
+        mediaModel.getMediasGallery(medias); // Pass medias array here
+        let mediaItem = mediaModel.DOMElement
+        allMediasElements.push(mediaModel)
         mediaContainer.appendChild(mediaItem);
     });
 
     updateTotalLikes(medias); // Pass the medias array here
+    return allMediasElements
+}
+
+function sortMedias(medias, allMediasElements) {
+    const mediaContainer = document.getElementById('medias-gallery');
+    mediaContainer.innerHTML = ""
+
+    medias.forEach(media => {
+        allMediasElements.forEach(am => {
+            if(media.id === am.id) {
+                mediaContainer.appendChild(am.DOMElement)
+            }
+        })
+    })
+
 }
 
 function getTotalLikes(medias) {
@@ -104,6 +123,5 @@ export function updateTotalLikes(medias) {
         updateLikesSum(likesSumElement, totalLikes);
     }
 }
-
 
 main();

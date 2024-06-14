@@ -76,27 +76,6 @@ function close() {
 
 export default {open, previous, next, close}
 
-// Function to fetch and store medias array and photographerId
-// async function initializeAndRenderGallery(photographerId) {
-//     console.log('Fetching medias for photographerId:', photographerId); // Debug log
-    
-//     const medias = await getMediasByPhotographerId(photographerId);
-//     console.log('Fetched medias:', medias); // Debug log
-    
-//     if (!medias || medias.length === 0) {
-//         console.error('No medias found');
-//         return;
-//     }
-    
-//     medias.forEach(mediaData => {
-//         const mediaTemplate = new MediaTemplate(mediaData, medias);
-//         mediaTemplate.getMediasGallery();
-//     });
-// }
-
-
-
-
 
 // Keyboard navigation handler function
 // ETAPE 1 : Assigner les valeurs a la lightbox (src, alt, titre, idmedia)
@@ -104,44 +83,3 @@ export default {open, previous, next, close}
 // ETAPE 3 : Créer dans ce fichier des fonctions a exporter pour fermer, next et prev la lighbox
 // NEXT et PREV recevrons les medias en paramètre
 // ETAPE 4 : Mettre un listener pour chacun des button directement dans photographer.js et appeler les functions créée  plus haut en mettant en parametre la variable medias
-
-// Close lightbox when clicking outside the content or pressing Escape key
-// lightbox.onclick = function(event) {
-//     if (event.target === lightbox) {
-//         closeLightbox();
-//     }
-// };
-
-// Attach event listeners for navigation
-// prevButton.onclick = () => prevMedia(photographerId, currentIndex, medias);
-// nextButton.onclick = () => nextMedia(photographerId, currentIndex, medias);
-// closeBtn.onclick = closeLightbox;
-
-// Ensure only one event listener for keyboard navigation
-// document.removeEventListener('keydown', handleKeydown);
-// document.addEventListener('keydown', (event) => handleKeydown(event, photographerId, currentIndex, medias));
-
-
-        // prevButton.style.display = index === -1 ? 'none' : 'flex';
-        // nextButton.style.display = index === medias.length - 1 ? 'none' : 'flex';
-        // closeBtn.style.display = index === -1 ? 'none' : 'flex';
-    // function handleKeydown(event) {
-    //     // Retrieve photographerId from session storage
-    //     const photographerId = sessionStorage.getItem('photographerId');
-
-    //     // Check if photographerId is valid
-    //     if (!photographerId) {
-    //         console.error('Photographer ID is undefined or null');
-    //         return;
-    //     }
-
-    //     // Handle keyboard navigation
-    //     if (event.key === 'ArrowLeft' && currentIndex > 0) {
-    //         openLightbox(photographerId, medias[currentIndex - 1].title); // Update with previous title
-    //     } else if (event.key === 'ArrowRight' && currentIndex < medias.length - 1) {
-    //         openLightbox(photographerId, medias[currentIndex + 1].title); // Update with next title
-    //     } else if (event.key === 'Escape') {
-    //         closeLightbox();
-    //     }
-    // }
-

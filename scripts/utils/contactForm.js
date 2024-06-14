@@ -24,7 +24,6 @@ export function initializeContactForm(photographerName) {
 
     contactBtn.addEventListener('click', function() {
         modal.style.display = 'flex';
-        //document.body.style.position = 'fixed';
         modal.setAttribute('aria-hidden', 'false');
         closeBtn.focus();
     });
@@ -51,7 +50,6 @@ export function initializeContactForm(photographerName) {
 
         thanksForContacting.style.display = 'flex';
         modal.style.display = 'none';
-        // mediaGallery.style.display = 'none';
         modal.setAttribute('aria-hidden', 'false');
         closeThanksBtn.focus();
 
@@ -69,7 +67,6 @@ export function initializeContactForm(photographerName) {
     document.addEventListener('keydown', function(event) {
         if (event.key === "Escape" && thanksForContacting.style.display === 'block') {
             thanksForContacting.style.display = 'none';
-            //document.body.classList.remove('no-scroll');
             mediaGallery.style.display = 'grid';
             contactBtn.focus();
         }
@@ -81,7 +78,6 @@ export function closeModal() {
     const contactBtn = document.querySelector('.contact-btn');
 
     modal.style.display = "none";
-    //document.body.classList.remove('no-scroll');
     modal.setAttribute('aria-hidden', 'true');
     contactBtn.focus();
 }

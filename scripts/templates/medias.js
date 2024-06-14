@@ -12,6 +12,7 @@ class MediaTemplate {
         this.date = data.date;
         this.price = data.price;
         this.openLightbox = lightbox.open;
+        this.DOMElement
     }
 
     getMediasGallery(medias) {
@@ -23,10 +24,10 @@ class MediaTemplate {
         }
 
         const mediaItem = document.createElement('div');
-        mediaItem.setAttribute('tabindex', 0);
         mediaItem.classList.add('media-item');
-        const thumbnail = document.createElement('div');
+        const thumbnail = document.createElement('span');
         thumbnail.classList.add('thumbnail', 'pointer');
+        thumbnail.setAttribute('tabindex', 0);
 
         if (this.video) {
             const video = document.createElement('video');
@@ -50,7 +51,8 @@ class MediaTemplate {
         const pointerItems = [thumbnail, title];
 
         pointerItems.forEach(item => {
-            item.addEventListener('click', () => {
+
+            const itemAction = () => {
                 this.openLightbox({
                     id: this.id,
                     photographerId: this.photographerId,
@@ -58,7 +60,10 @@ class MediaTemplate {
                     image: this.image,
                     title: this.title
                 });
-            });
+            }
+
+            item.addEventListener('click', () => itemAction());
+            item.addEventListener('keydown', () => itemAction());
         });
 
         const likes = document.createElement('div');
@@ -101,7 +106,7 @@ class MediaTemplate {
 
         mediaGallery.appendChild(mediaItem);
 
-        return mediaItem;
+        this.DOMElement = mediaItem;
     }
 }
 
