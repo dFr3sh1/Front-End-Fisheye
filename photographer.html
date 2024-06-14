@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <link rel="stylesheet" href="./style.css" />
     <meta charset="utf-8">
+    <title>Fisheye</title>
+    <link rel="stylesheet" href="./style.css" />
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye</title>
 </head>
 <body id="body">
 <header class="container" id="header-ph">
@@ -14,11 +14,11 @@
     </a>
 </header>
 <main class="container" id="main-wrapper" aria-hidden="false">
-    <div class="modal shadow" id="contact_modal" aria-placeholder="true" role="dialog" aria-describedby="form-title">
+    <div class="modal shadow" id="contact_modal" aria-placeholder="true" role="dialog" aria-labelledby="form-title">
         <form id="contact-form" action="">
             <div class="form-title-div">
                 <h2 class="form-title" id="form-title"></h2>
-                <button class="close-btn">
+                <button type="button" class="close-btn" aria-label="Close">
                     <img src="./assets/icons/close-24px 1.png" alt="Fermer">
                 </button>
             </div>
@@ -34,7 +34,7 @@
         </form>
     </div>
     <div id="photographer"></div>
-    <div class="thanks-for-contacting shadow" id="thanks-for-contacting">
+    <div class="thanks-for-contacting shadow" id="thanks-for-contacting" aria-live="polite">
         <p class="thanks-modal"></p>
         <button class="mainBtn" id="close-thanks">Fermer</button>
     </div>
@@ -49,19 +49,19 @@
     <div data-id="" id="lightbox" class="lightbox container" role="dialog" aria-label="Lightbox">
         <div id="lightbox-content" class="lightbox-content">
             <div id="lightbox-image-container" class="lightbox-image-container">
-                <img id="lightbox-media" src="" alt="" role="media" aria-label="media closeup view" aria-describedby="image-description" class="lightbox-media shadow">
-                <video id="lightbox-video" src="" alt="" role="media" aria-label="media closeup view" aria-describedby="image-description" class="lightbox-media shadow"></video>
+                <img id="lightbox-media" src="" alt="" role="media" aria-describedby="image-description" aria-label="media closeup view" class="lightbox-media shadow">
+                <video id="lightbox-video" src="" alt="" role="media" aria-describedby="image-description" aria-label="media closeup view" class="lightbox-media shadow"></video>
             <div id="image-description-div" class="image-description-div">
                 <h3 id="image-description" class="lightbox-title" role="text"></h3>
             </div>
             </div>
-            <button id="prev-button" class="lightbox-button isDisplayed">
+            <button id="prev-button" class="lightbox-button isDisplayed" aria-label="Précédente">
                 <img src="./assets/icons/precedent-btn.png">
             </button>
-            <button id="next-button" class="lightbox-button isDisplayed">
+            <button id="next-button" class="lightbox-button isDisplayed" aria-label="Prochaine">
                 <img src="./assets/icons/next-btn.png">
             </button>
-            <button id="close-button" class="lightbox-button isDisplayed">
+            <button id="close-button" class="lightbox-button isDisplayed" aria-label="Fermer">
                 <img src="./assets/icons/close-lightbox-btn.png">
             </button>
         </div>
