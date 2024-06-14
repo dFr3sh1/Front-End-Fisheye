@@ -15,9 +15,9 @@ async function main() {
         displayHeaderPh(photographer);
 
         // Fetch the media for the selected photographer
-        const originalMedias = await getMediasByPhotographerId(id);
+        // const originalMedias = await getMediasByPhotographerId(id);
         let medias = await getMediasByPhotographerId(id);
-        console.log(medias);
+        // console.log(medias);
 
         // Display medias
         let allMediasElements = displayMedias(medias);
@@ -31,7 +31,7 @@ async function main() {
             } else if (selectedOption === 'date') {
                 medias = filterByDate(medias, 'recent');
             } else if (selectedOption === 'title') {
-                const keyword = document.getElementById('filter-title').value;
+                // const keyword = document.getElementById('filter-title').value;
                 const order = 'asc'; // or 'desc' for descending order
                 medias = filterByTitle(medias, order);
             }
@@ -60,7 +60,7 @@ async function main() {
         likePriceDiv.appendChild(heartIcon);
         likePriceDiv.appendChild(phPrice);
 
-        initializeContactForm();
+        initializeContactForm(photographer.name);
 
         const prevButton = document.getElementById('prev-button');
         const nextButton = document.getElementById('next-button');
