@@ -1,5 +1,5 @@
 import openLightbox from '../utils/lightboxModal.js'
-import {updateTotalLikes} from '../pages/photographer.js'
+import { updateTotalLikes} from '../pages/photographer.js'
 
 class MediaTemplate {
     constructor(data, lightbox) {
@@ -12,7 +12,7 @@ class MediaTemplate {
         this.date = data.date;
         this.price = data.price;
         this.openLightbox = lightbox.open;
-        this.DOMElement
+        this.DOMElement = null;
     }
 
     getMediasGallery(medias) {
@@ -25,6 +25,7 @@ class MediaTemplate {
 
         const mediaItem = document.createElement('div');
         mediaItem.classList.add('media-item');
+
         const thumbnail = document.createElement('span');
         thumbnail.classList.add('thumbnail', 'pointer');
         thumbnail.setAttribute('tabindex', 0);
@@ -51,7 +52,6 @@ class MediaTemplate {
         const pointerItems = [thumbnail, title];
 
         pointerItems.forEach(item => {
-
             const itemAction = () => {
                 this.openLightbox({
                     id: this.id,
@@ -62,18 +62,25 @@ class MediaTemplate {
                 });
             }
 
-            item.addEventListener('click', () => itemAction());
-            item.addEventListener('keydown', () => itemAction());
+            item.addEventListener('click', itemAction);
+            item.addEventListener('keydown', (event) => {
+                if (event.key === "Enter") {
+                    itemAction();
+                }    
+            });
         });
 
         const likes = document.createElement('div');
         likes.classList.add('likes');
+
         let counter = document.createElement('p');
         counter.textContent = this.likes;
         counter.classList.add('likes');
+
         const like = document.createElement('img');
         like.src = `/assets/images/redHeartFilled.png`;
         like.classList.add('like-button', 'pointer');
+
         like.addEventListener('click', (event) => {
             event.stopPropagation();
             if (like.classList.contains('liked')) {
@@ -91,7 +98,7 @@ class MediaTemplate {
             }
 
 
-            updateTotalLikes(medias); // Ensure this updates the total likes globally with medias array
+            updateTotalLikes(medias);
         });
 
         likes.appendChild(counter);
@@ -101,6 +108,7 @@ class MediaTemplate {
         mediaInfo.classList.add('media-info');
         mediaInfo.appendChild(title);
         mediaInfo.appendChild(likes);
+        
         mediaItem.appendChild(thumbnail);
         mediaItem.appendChild(mediaInfo);
 
