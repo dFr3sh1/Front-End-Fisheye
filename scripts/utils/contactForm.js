@@ -13,8 +13,6 @@ export function initializeContactForm(photographerName) {
     const closeBtn = document.querySelector('.close-btn');
     const thanksForContacting = document.getElementById('thanks-for-contacting');
     const closeThanksBtn = document.getElementById('close-thanks');
-
-    // Access the paragraph with the class 'thanks-modal' inside thanksForContacting
     const thanksModalP = thanksForContacting.querySelector('.thanks-modal');
 
     // Get the first name of the photographer
@@ -43,14 +41,14 @@ export function initializeContactForm(photographerName) {
         const form = event.target;  // Reference to the form
         const formData = new FormData(form);  // Get form data
         const formEntries = Object.fromEntries(formData.entries());  // Convert to an object
-        console.log('Form Data:', formEntries);  // Log form data
+        console.log('Form Data:', formEntries);  // Log form data in the browser
 
         // Update the thanks-modal p element content
         thanksModalP.textContent = `Merci de m'avoir contacté. Je vous répondrai au plus vite, \n ${photographerFirstName}.`;
 
         thanksForContacting.style.display = 'flex';
         modal.style.display = 'none';
-        modal.setAttribute('aria-hidden', 'false');
+        modal.setAttribute('aria-hidden', 'true');
         closeThanksBtn.focus();
 
         // Reset form input fields
@@ -59,7 +57,6 @@ export function initializeContactForm(photographerName) {
 
     closeThanksBtn.addEventListener('click', function() {
         thanksForContacting.style.display = 'none';
-        //document.body.classList.remove('no-scroll');
         mediaGallery.style.display = 'grid';
         contactBtn.focus();
     });

@@ -25,11 +25,10 @@ export async function getPhotographerById(id) {
     try {
         const response = await fetch('/data/photographers.json');
         const data = await response.json();
-        const selected = data.photographers.find(p => p.id === id)
-        return selected; // Return only the photographer
+        return data.photographers.find(p => p.id === id); // Return only the photographer
     } catch(error) {
         console.error('Error loading photographer:', error);
-        return []; // Return an empty array in case of error
+        return null; 
     }
 }
 
@@ -38,8 +37,7 @@ export async function getMediasByPhotographerId(id) {
     try {
         const response = await fetch('/data/photographers.json');
         const data = await response.json();
-        const selected = data.media.filter(media => media.photographerId === id)
-        return selected; // Return only the medias from the photographer array
+        return data.media.filter(media => media.photographerId === id) // Return only the medias from the photographer array
 
     } catch(error) {
         console.error('Error loading medias', error);
