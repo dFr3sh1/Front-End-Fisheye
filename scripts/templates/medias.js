@@ -76,29 +76,23 @@ class MediaTemplate {
         let counter = document.createElement('p');
         counter.textContent = this.likes;
         counter.classList.add('likes');
+        counter.tabIndex = 0;
 
         const like = document.createElement('img');
         like.src = `/assets/images/redHeartFilled.png`;
         like.classList.add('like-button', 'pointer');
+        like.tabIndex = 0;
 
         like.addEventListener('click', (event) => {
             event.stopPropagation();
-            if (like.classList.contains('liked')) {
-                this.likes--;
-                like.classList.remove('liked');
-            } else {
-                this.likes++;
-                like.classList.add('liked');
+            this.toggleLike(like, medias, counter);
+        });
+
+        like.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                event.stopPropagation();
+                this.toggleLike(like, medias, counter)
             }
-            counter.textContent = this.likes;
-
-            const mediaIndex = medias.findIndex(media => media.id === this.id);
-            if (mediaIndex !== -1) {
-                medias[mediaIndex].likes = this.likes;
-            }
-
-
-            updateTotalLikes(medias);
         });
 
         likes.appendChild(counter);
@@ -116,6 +110,24 @@ class MediaTemplate {
 
         this.DOMElement = mediaItem;
     }
+
+    toggleLike(like, medias, counter) {
+        if (like.classList.contains('liked')) {
+            this.likes --;
+            like.classList.remove('liked');
+        } else {
+            this.likes++;
+            like.classList.add('liked');
+        }
+        counter.textContent = this.likes;
+        
+        const mediaIndex = medias.findIndex(media => media.id === this.id);
+        if (mediaIndex !== -1) {
+            medias[mediaIndex].likes = this.likes
+        }
+
+        updateTotalLikes(medias);
+        }
 }
 
 export default MediaTemplate;

@@ -124,4 +124,16 @@ export function updateTotalLikes(medias) {
     }
 }
 
+
+function handleKeydown(event, medias) {
+    if (event.key === "Escape") {
+        lightbox.close();
+    } else if (event.key === "ArrowRight") {
+        lightbox.next(medias);
+    } else if (event.key === "ArrowLeft") {
+        lightbox.previous(medias);
+    }
+    
+}
+
 main();

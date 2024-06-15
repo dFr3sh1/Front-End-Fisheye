@@ -1,32 +1,38 @@
 // index.js
 import PhotographerTemplate from '../templates/photographer.js';
-import {getPhotographers} from '../utils/getter.js'
+import { getPhotographers } from '../utils/getter.js';
 
 export async function init() {
     try {
         const photographers = await getPhotographers();
         const photographersSection = document.querySelector(".photographer_section");
-    
+
         photographers.forEach((photographer, index) => {
             const photographerModel = new PhotographerTemplate(photographer);
             const userCardDOM = photographerModel.getUserCardDOM();
-            userCardDOM.querySelector(".portrait-class").classList.add(`portrait-${index}`);
-            userCardDOM.addEventListener("click", () => {
+            userCardDOM.querySelector('.portrait-class').classList.add(`portrait-${index}`);
+            userCardDOM.addEventListener('click', () => {
                 navigateToPhotographerPage(photographer);
-            })    
+            });
+            userCardDOM.tabIndex = 0;
+            userCardDOM.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    navigateToPhotographerPage(photographer);
+                }
+            });
             photographersSection.appendChild(userCardDOM);
         });
 
-    
     } catch (error) {
         console.error('Error initializing:', error);
     }
-
 }
+
 // Call init() when the DOM content is loaded
 document.addEventListener("DOMContentLoaded", async () => {
     await init();
 });
+
 
 
 
