@@ -16,7 +16,7 @@ class MediaTemplate {
     }
 
     getMediasGallery(medias) {
-        const mediaGallery = document.querySelector(".media-gallery");
+        const mediaGallery = document.querySelector('.media-gallery');
 
         if (!mediaGallery) {
             console.error('Media gallery element not found');
@@ -64,7 +64,7 @@ class MediaTemplate {
 
             item.addEventListener('click', itemAction);
             item.addEventListener('keydown', (event) => {
-                if (event.key === "Enter") {
+                if (event.key === 'Enter') {
                     itemAction();
                 }    
             });

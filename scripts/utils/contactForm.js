@@ -29,7 +29,7 @@ export function initializeContactForm(photographerName) {
     closeBtn.addEventListener('click', closeModal);
 
     document.addEventListener('keydown', function(event) {
-        if (event.key === "Escape") {
+        if (event.key === 'Escape') {
             closeModal();
         }
     });
@@ -62,7 +62,7 @@ export function initializeContactForm(photographerName) {
     });
 
     document.addEventListener('keydown', function(event) {
-        if (event.key === "Escape" && thanksForContacting.style.display === 'block') {
+        if (event.key === 'Escape' && thanksForContacting.style.display === 'block') {
             thanksForContacting.style.display = 'none';
             mediaGallery.style.display = 'grid';
             contactBtn.focus();
@@ -71,7 +71,7 @@ export function initializeContactForm(photographerName) {
 }
 
 export function closeModal() {
-    const modal = document.getElementById("contact_modal");
+    const modal = document.getElementById('contact_modal');
     const contactBtn = document.querySelector('.contact-btn');
 
     modal.style.display = "none";

@@ -1,15 +1,15 @@
 // selectedPhotographer.js
-import MediaTemplate from "../templates/medias.js";
-import displayHeaderPh from "../templates/banner.js";
-import { getPhotographerById, getMediasByPhotographerId } from "../utils/getter.js";
-import { filterByPopularity, filterByDate, filterByTitle } from "../utils/mediaFilter.js";
-import { initializeContactForm } from "../utils/contactForm.js";
-import lightbox from "../utils/lightboxModal.js";
+import MediaTemplate from '../templates/medias.js';
+import displayHeaderPh from '../templates/banner.js';
+import { getPhotographerById, getMediasByPhotographerId } from '../utils/getter.js';
+import { filterByPopularity, filterByDate, filterByTitle } from '../utils/mediaFilter.js';
+import { initializeContactForm } from '../utils/contactForm.js';
+import lightbox from '../utils/lightboxModal.js';
 
 async function main() {
     try {
         const searchPhotographe = window.location.search;
-        const id = Number(searchPhotographe.split("=")[1]);
+        const id = Number(searchPhotographe.split('=')[1]);
         const photographer = await getPhotographerById(id);
 
         displayHeaderPh(photographer);
@@ -126,11 +126,11 @@ export function updateTotalLikes(medias) {
 
 
 function handleKeydown(event, medias) {
-    if (event.key === "Escape") {
+    if (event.key === 'Escape') {
         lightbox.close();
-    } else if (event.key === "ArrowRight") {
+    } else if (event.key === 'ArrowRight') {
         lightbox.next(medias);
-    } else if (event.key === "ArrowLeft") {
+    } else if (event.key === 'ArrowLeft') {
         lightbox.previous(medias);
     }
     

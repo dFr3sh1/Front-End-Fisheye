@@ -1,5 +1,5 @@
-import PhotographerTemplate from "./photographer.js";
-import { initializeContactForm } from "../utils/contactForm.js";
+import PhotographerTemplate from './photographer.js';
+import { initializeContactForm } from '../utils/contactForm.js';
 
 function displayHeaderPh(photographe) {
     const photographer = document.getElementById('photographer');    

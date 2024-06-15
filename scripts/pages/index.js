@@ -5,7 +5,7 @@ import { getPhotographers } from '../utils/getter.js';
 export async function init() {
     try {
         const photographers = await getPhotographers();
-        const photographersSection = document.querySelector(".photographer_section");
+        const photographersSection = document.querySelector('.photographer_section');
 
         photographers.forEach((photographer, index) => {
             const photographerModel = new PhotographerTemplate(photographer);
@@ -29,7 +29,7 @@ export async function init() {
 }
 
 // Call init() when the DOM content is loaded
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener('DOMContentLoaded', async () => {
     await init();
 });
 
