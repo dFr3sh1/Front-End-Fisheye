@@ -1,23 +1,22 @@
-// selectedPhotographer.js
-import MediaTemplate from '../templates/medias.js';
-import displayHeaderPh from '../templates/banner.js';
-import { getPhotographerById, getMediasByPhotographerId } from '../utils/getter.js';
-import { filterByPopularity, filterByDate, filterByTitle } from '../utils/mediaFilter.js';
-import { initializeContactForm } from '../utils/contactForm.js';
-import lightbox from '../utils/lightboxModal.js';
+import displayHeaderPh from "../templates/banner.js";
+import { getPhotographerById, getMediasByPhotographerId } from "../utils/getter.js";
+import { filterByPopularity, filterByDate, filterByTitle } from "../utils/mediaFilter.js";
+import { initializeContactForm } from "../utils/contactForm.js";
+import lightbox from "../utils/lightboxModal.js";
+import { displayMedias, sortMedias } from "../utils/mediaDisplay.js";
+import { getTotalLikes, updateLikesSum, updateTotalLikes } from "../utils/likeUtils.js";
+import { handleKeydown, handleDropdownKeydown } from "../utils/keyboardNavigation.js";
 
 async function main() {
     try {
         const searchPhotographe = window.location.search;
-        const id = Number(searchPhotographe.split('=')[1]);
+        const id = Number(searchPhotographe.split("=")[1]);
         const photographer = await getPhotographerById(id);
 
         displayHeaderPh(photographer);
 
         // Fetch the media for the selected photographer
-        // const originalMedias = await getMediasByPhotographerId(id);
         let medias = await getMediasByPhotographerId(id);
-        // console.log(medias);
 
         // Display medias
         let allMediasElements = displayMedias(medias);
@@ -31,13 +30,16 @@ async function main() {
             } else if (selectedOption === 'date') {
                 medias = filterByDate(medias, 'recent');
             } else if (selectedOption === 'title') {
-                // const keyword = document.getElementById('filter-title').value;
                 const order = 'asc'; // or 'desc' for descending order
                 medias = filterByTitle(medias, order);
             }
 
             // Display filtered media
             sortMedias(medias, allMediasElements);
+        });
+
+        filterDropdown.addEventListener('keydown', function (event) {
+            handleDropdownKeydown(event, filterDropdown);
         });
 
         // Filter media by popularity by default
@@ -68,7 +70,7 @@ async function main() {
 
         prevButton.addEventListener('click', () => lightbox.previous(medias));
         nextButton.addEventListener('click', () => lightbox.next(medias));
-        closeBtn.addEventListener('click', () => lightbox.close())
+        closeBtn.addEventListener('click', () => lightbox.close());
 
         document.addEventListener('keydown', (event) => handleKeydown(event, medias));
 
@@ -77,63 +79,65 @@ async function main() {
     }
 }
 
-function displayMedias(medias) {
-    const mediaContainer = document.getElementById('medias-gallery');
-
-    let allMediasElements = []
-
-    medias.forEach((media) => {
-        const mediaModel = new MediaTemplate(media, lightbox);        
-        mediaModel.getMediasGallery(medias); // Pass medias array here
-        let mediaItem = mediaModel.DOMElement
-        allMediasElements.push(mediaModel)
-        mediaContainer.appendChild(mediaItem);
-    });
-
-    updateTotalLikes(medias); // Pass the medias array here
-    return allMediasElements
-}
-
-function sortMedias(medias, allMediasElements) {
-    const mediaContainer = document.getElementById('medias-gallery');
-    mediaContainer.innerHTML = ""
-
-    medias.forEach(media => {
-        allMediasElements.forEach(am => {
-            if(media.id === am.id) {
-                mediaContainer.appendChild(am.DOMElement)
-            }
-        })
-    })
-
-}
-
-function getTotalLikes(medias) {
-    return medias.reduce((sum, media) => sum + media.likes, 0);
-}
-
-function updateLikesSum(likesSumElement, totalLikes) {
-    likesSumElement.textContent = `${totalLikes}`;
-}
-
-export function updateTotalLikes(medias) {
-    const totalLikes = getTotalLikes(medias);
-    const likesSumElement = document.getElementById('total-likes');
-    if (likesSumElement) {
-        updateLikesSum(likesSumElement, totalLikes);
-    }
-}
 
 
-function handleKeydown(event, medias) {
-    if (event.key === 'Escape') {
-        lightbox.close();
-    } else if (event.key === 'ArrowRight') {
-        lightbox.next(medias);
-    } else if (event.key === 'ArrowLeft') {
-        lightbox.previous(medias);
-    }
+// function displayMedias(medias) {
+//     const mediaContainer = document.getElementById('medias-gallery');
+
+//     let allMediasElements = []
+
+//     medias.forEach((media) => {
+//         const mediaModel = new MediaTemplate(media, lightbox);        
+//         mediaModel.getMediasGallery(medias); // Pass medias array here
+//         let mediaItem = mediaModel.DOMElement
+//         allMediasElements.push(mediaModel)
+//         mediaContainer.appendChild(mediaItem);
+//     });
+
+//     updateTotalLikes(medias); // Pass the medias array here
+//     return allMediasElements
+// }
+
+// function sortMedias(medias, allMediasElements) {
+//     const mediaContainer = document.getElementById('medias-gallery');
+//     mediaContainer.innerHTML = ""
+
+//     medias.forEach(media => {
+//         allMediasElements.forEach(am => {
+//             if(media.id === am.id) {
+//                 mediaContainer.appendChild(am.DOMElement)
+//             }
+//         })
+//     })
+
+// }
+
+// function getTotalLikes(medias) {
+//     return medias.reduce((sum, media) => sum + media.likes, 0);
+// }
+
+// function updateLikesSum(likesSumElement, totalLikes) {
+//     likesSumElement.textContent = `${totalLikes}`;
+// }
+
+// export function updateTotalLikes(medias) {
+//     const totalLikes = getTotalLikes(medias);
+//     const likesSumElement = document.getElementById('total-likes');
+//     if (likesSumElement) {
+//         updateLikesSum(likesSumElement, totalLikes);
+//     }
+// }
+
+
+// function handleKeydown(event, medias) {
+//     if (event.key === 'Escape') {
+//         lightbox.close();
+//     } else if (event.key === 'ArrowRight') {
+//         lightbox.next(medias);
+//     } else if (event.key === 'ArrowLeft') {
+//         lightbox.previous(medias);
+//     }
     
-}
+// }
 
 main();

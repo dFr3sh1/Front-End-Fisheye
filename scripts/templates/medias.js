@@ -1,5 +1,5 @@
 import openLightbox from '../utils/lightboxModal.js'
-import { updateTotalLikes} from '../pages/photographer.js'
+import { updateTotalLikes} from '../utils/likeUtils.js'
 
 class MediaTemplate {
     constructor(data, lightbox) {
