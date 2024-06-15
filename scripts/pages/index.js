@@ -59,9 +59,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 // }
 
 
-
-// function navigateToPhotographerPage(photographer) {
-//     window.location.href = `photographer.html?id=${photographer.id}`;
-// }
+function navigateToPhotographerPage(photographer) {
+    window.location.href = `photographer.html?id=${photographer.id}`;
+}
 
 
