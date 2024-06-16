@@ -38,10 +38,28 @@ img.logo-photographe  {
     margin-bottom: -20px;
 }
 
+.filterSelection {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.filterSelection::after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 5px solid transparent;
+    border-top-color: #000;
+    pointer-events: none;
+}
+
 .filter-option {
     margin: 60px;
 
     padding: 20px;
+    overflow-y: auto;
 
     font-size: 18px;
     line-height: 23.44px;
@@ -51,12 +69,13 @@ img.logo-photographe  {
 
     background-color: $main-color;
     color:rgba(255, 255, 255, 1);
+    box-shadow: $grey-color;
 }
 
-.filterSelection {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+.selected:focus {
+    outline: none;
+    border-color: $second-main-color;
+    box-shadow:  0 4px 8px $grey-color;
 }
 
 .divHeader {

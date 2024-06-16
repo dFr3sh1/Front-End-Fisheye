@@ -27,19 +27,19 @@ class MediaTemplate {
         mediaItem.classList.add('media-item');
 
         const thumbnail = document.createElement('span');
-        thumbnail.classList.add('thumbnail', 'pointer');
+        thumbnail.classList.add('thumbnail', 'pointer', 'selected');
         thumbnail.setAttribute('tabindex', 0);
 
         if (this.video) {
             const video = document.createElement('video');
-            video.classList.add('media-video');
+            video.classList.add('media-video', 'media');
             video.src = `/assets/photographers/${this.photographerId}/${this.video}`;
             video.controls = true;
             video.autoplay = false;
             thumbnail.appendChild(video);
         } else {
             const image = document.createElement('img');
-            image.classList.add('media-image');
+            image.classList.add('media-image', 'media');
             image.src = `/assets/photographers/${this.photographerId}/${this.image}`;
             thumbnail.appendChild(image);
         }

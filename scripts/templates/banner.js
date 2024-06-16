@@ -27,7 +27,7 @@ function displayHeaderPh(photographe) {
     tagline.classList.add('contactTagline');
     
     const contactBtn = document.createElement('button');
-    contactBtn.classList.add('mainBtn', 'button', 'contact-btn');
+    contactBtn.classList.add('mainBtn', 'button', 'contact-btn', 'selected');
     contactBtn.textContent = "Contactez-moi";
     
     const photographePortrait = document.createElement('img');

@@ -391,21 +391,38 @@ img.logo-photographe {
 .headerPortrait {
   margin-bottom: -20px; }
 
+.filterSelection {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; }
+
+.filterSelection::after {
+  content: '';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-top-color: #000;
+  pointer-events: none; }
+
 .filter-option {
   margin: 60px;
   padding: 20px;
+  overflow-y: auto;
   font-size: 18px;
   line-height: 23.44px;
   text-align: center;
   border: none;
   border-radius: 2%;
   background-color: #901c1c;
-  color: white; }
+  color: white;
+  box-shadow: #757575; }
 
-.filterSelection {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; }
+.selected:focus {
+  outline: none;
+  border-color: #d3573c;
+  box-shadow: 0 4px 8px #757575; }
 
 .divHeader {
   margin-left: 50px; }
@@ -465,7 +482,7 @@ img.logo-photographe {
   height: 100%;
   object-fit: cover; }
 
-.media-image {
+.media {
   object-fit: cover;
   object-position: 0px 0px; }
 
@@ -499,7 +516,8 @@ img.logo-photographe {
   width: 200px;
   margin-bottom: 20px;
   clip-path: circle(49%);
-  background-size: cover; }
+  background-size: cover;
+  object-fit: cover; }
 
 .ph-div-info {
   display: flex;
