@@ -50,7 +50,7 @@ class PhotographerTemplate {
         taglineElement.textContent = this.tagline;
 
         const priceElement = document.createElement('p');
-        priceElement.textContent = `${this.price} €/jour` ?? ('Le photographe négocie son prix selon travail');
+        priceElement.textContent = this.price != null ? `${this.price} €/jour` : 'Le photographe négocie son prix selon travail';
         priceElement.classList.add('priceText');
 
         article.appendChild(a);

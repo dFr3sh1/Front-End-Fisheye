@@ -1,4 +1,4 @@
-import openLightbox from '../utils/lightboxModal.js'
+//import openLightbox from '../utils/lightboxModal.js'
 import { updateTotalLikes} from '../utils/likeUtils.js'
 
 class MediaTemplate {

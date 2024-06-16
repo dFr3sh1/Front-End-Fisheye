@@ -4,7 +4,7 @@ import { filterByPopularity, filterByDate, filterByTitle } from "../utils/mediaF
 import { initializeContactForm } from "../utils/contactForm.js";
 import lightbox from "../utils/lightboxModal.js";
 import { displayMedias, sortMedias } from "../utils/mediaDisplay.js";
-import { getTotalLikes, updateLikesSum, updateTotalLikes } from "../utils/likeUtils.js";
+import { getTotalLikes, updateLikesSum } from "../utils/likeUtils.js";
 import { handleKeydown, handleDropdownKeydown } from "../utils/keyboardNavigation.js";
 
 async function main() {
