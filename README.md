@@ -41,3 +41,9 @@ The site must respect the WCAG convention and ARIA attributs
 
  Given that I must take the role of the developer and I have the right to implement what I consider necessary to make the code better structured I've decided to install SASS,
  and follow the SMACSS and BEM convention.
+
+ In this project I've learned the importance of the well defined architecture for a project.
+
+I've enhanced the code programming all functions upon their functionalities in several files, turning one as the backbone of the project to handle them. I've programmed inclusive and accessible for screen readers, all the app can be navigate it trough the keyboard.
+
+The syntax is standard and problems were resolved with ESLint, added to the project.
