@@ -35,7 +35,7 @@ export async function getPhotographerById(id) {
 
 export async function getMediasByPhotographerId(id) {
     try {
-        const response = await fetch('/data/photographers.json');
+        const response = await fetch('./data/photographers.json');
         const data = await response.json();
         return data.media.filter(media => media.photographerId === id) // Return only the medias from the photographer array
 
