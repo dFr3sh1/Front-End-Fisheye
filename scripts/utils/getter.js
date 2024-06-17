@@ -1,7 +1,7 @@
 
 export async function getPhotographers() {
     try {
-        const response = await fetch('/data/photographers.json');
+        const response = await fetch('./data/photographers.json');
         const data = await response.json();
         return data.photographers; // Return only the photographers array
     } catch(error) {
@@ -12,7 +12,7 @@ export async function getPhotographers() {
 
 export async function getMedias() {
     try {
-        const response = await fetch('/data/photographers.json');
+        const response = await fetch('./data/photographers.json');
         const data = await response.json();
         return data.media; // Return only the photographers array
     } catch(error) {
