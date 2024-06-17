@@ -23,7 +23,7 @@ export async function getMedias() {
 
 export async function getPhotographerById(id) {
     try {
-        const response = await fetch('/data/photographers.json');
+        const response = await fetch('./data/photographers.json');
         const data = await response.json();
         return data.photographers.find(p => p.id === id); // Return only the photographer
     } catch(error) {
