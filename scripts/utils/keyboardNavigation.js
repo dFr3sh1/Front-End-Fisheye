@@ -1,7 +1,6 @@
 import lightbox from "../utils/lightboxModal.js";
 
 export function handleKeydown(event, medias) {
-    console.log('Keydown event detected; ', event.key)
     if (event.key === "Escape") {
         lightbox.close();
     } else if (event.key === "ArrowRight") {
@@ -12,7 +11,6 @@ export function handleKeydown(event, medias) {
 }
 
 export function handleDropdownKeydown(event, dropdown) {
-    console.log('Dropdown keydown event detected: ', event.key)
     if (event.key === "ArrowDown") {
         event.preventDefault();
         const nextOption = dropdown.options[dropdown.selectedIndex + 1];

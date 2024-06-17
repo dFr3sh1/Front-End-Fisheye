@@ -519,6 +519,16 @@ img.logo-photographe {
   background-size: cover;
   object-fit: cover; }
 
+.portrait-class[alt]::after {
+  content: attr(alt);
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  /* Hides text visually */
+  white-space: nowrap; }
+
 .ph-div-info {
   display: flex;
   flex-direction: column;

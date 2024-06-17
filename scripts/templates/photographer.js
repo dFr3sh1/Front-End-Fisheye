@@ -25,8 +25,9 @@ class PhotographerTemplate {
 
         const img = document.createElement('img');
         img.classList.add('portrait-class');
-        img.style.backgroundImage = `url(assets/photographers/photographersIDPhotos/${this.portrait})`;
+        img.src = `assets/photographers/photographersIDPhotos/${this.portrait}`;
         img.alt = `Portrait de ${this.name}`;
+        img.setAttribute('aria-hidden', 'true');
         
         const h2 = document.createElement('h2');
         h2.textContent = this.name;
@@ -54,11 +55,12 @@ class PhotographerTemplate {
         priceElement.classList.add('priceText');
 
         article.appendChild(a);
-        a.appendChild(divLink);
-        divLink.appendChild(img);
-        divLink.appendChild(h2);
+        a.appendChild(divLink); 
+        a.appendChild(img);
+        a.appendChild(h2);
 
         article.appendChild(ph_div_info);
+        //a.appendChild(ph_div_info);
         ph_div_info.appendChild(locationDiv);
         locationDiv.appendChild(cityElement);
         locationDiv.appendChild(countryElement);
