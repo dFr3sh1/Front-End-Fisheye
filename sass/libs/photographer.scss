@@ -44,16 +44,7 @@ img.logo-photographe  {
     justify-content: flex-start;
 }
 
-.filterSelection::after {
-    content: '';
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    border: 5px solid transparent;
-    border-top-color: #000;
-    pointer-events: none;
-}
+
 
 .filter-option {
     margin: 60px;

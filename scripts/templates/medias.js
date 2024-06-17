@@ -33,14 +33,14 @@ class MediaTemplate {
         if (this.video) {
             const video = document.createElement('video');
             video.classList.add('media-video', 'media');
-            video.src = `/assets/photographers/${this.photographerId}/${this.video}`;
+            video.src = `./assets/photographers/${this.photographerId}/${this.video}`;
             video.controls = true;
             video.autoplay = false;
             thumbnail.appendChild(video);
         } else {
             const image = document.createElement('img');
             image.classList.add('media-image', 'media');
-            image.src = `/assets/photographers/${this.photographerId}/${this.image}`;
+            image.src = `./assets/photographers/${this.photographerId}/${this.image}`;
             thumbnail.appendChild(image);
         }
 
@@ -79,7 +79,7 @@ class MediaTemplate {
         counter.tabIndex = 0;
 
         const like = document.createElement('img');
-        like.src = `/assets/images/redHeartFilled.png`;
+        like.src = `./assets/images/redHeartFilled.png`;
         like.classList.add('like-button', 'pointer');
         like.tabIndex = 0;
 

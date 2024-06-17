@@ -25,7 +25,7 @@ class PhotographerTemplate {
 
         const img = document.createElement('img');
         img.classList.add('portrait-class');
-        img.src = `assets/photographers/photographersIDPhotos/${this.portrait}`;
+        img.src = `./assets/photographers/photographersIDPhotos/${this.portrait}`;
         img.alt = `Portrait de ${this.name}`;
         img.setAttribute('aria-hidden', 'true');
         
