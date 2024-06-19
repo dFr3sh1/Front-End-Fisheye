@@ -538,6 +538,9 @@ img.logo-photographe {
   align-items: center; }
 
 .a-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-decoration: none; }
 
 /*# sourceMappingURL=style.css.map */
